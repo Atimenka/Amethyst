@@ -38,10 +38,7 @@ TerminalWidget::TerminalWidget(QWidget *parent, const QString &workingDirectory)
     layout->setContentsMargins(0, 0, 0, 0);
 
     m_display = new QPlainTextEdit(this);
-    m_display->setStyleSheet(
-        "background-color: #1e1e1e; color: #cccccc; "
-        "font-family: 'Consolas', 'DejaVu Sans Mono', monospace; font-size: 10pt;"
-    );
+    m_display->setObjectName("terminalDisplay");
     layout->addWidget(m_display);
     setFocusProxy(m_display);
 

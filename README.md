@@ -60,9 +60,12 @@ Amethyst is a **Windows-first** fork. While the original Cremniy was primarily d
 - 📦 Windows installer and portable build
 - 🔌 Plugin API
 
-## Installation
+## Installation & Windows Installer
 
-A Windows installer will be provided in the **Releases** section. No manual build is required for end users.
+Standalone portable bundles and setup installers for Windows can be generated using the scripts in `packaging/windows/`.
+
+* 📄 **[Windows Packaging & Installer Guide](docs/RU/windows_packaging_guide.md)**
+* 🚀 **One-Click Installer Builder:** run `packaging\windows\build_installer.bat` (or `package.ps1`) to compile in Release, deploy all Qt6 runtime DLLs with `windeployqt`, and compile the `Amethyst_Setup_x64.exe` installer with Inno Setup.
 
 ## Developer & Credits
 

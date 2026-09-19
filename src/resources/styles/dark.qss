@@ -452,3 +452,167 @@ QDialog#DiskImageViewerDialog QGroupBox {
     font-weight: bold;
 }
 
+/* ==========================================
+ * Status Bar
+ * ========================================== */
+QStatusBar,
+QStatusBar#ideStatusBar {
+    background-color: #120e1a;
+    border-top: 1px solid #291a3c;
+    color: #a797be;
+    min-height: 24px;
+}
+
+QStatusBar::item {
+    border: none;
+    padding: 2px 8px;
+}
+
+QLabel#ideStatusLabel {
+    color: #c084fc;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 10px;
+    background: #1e132e;
+    border: 1px solid #3b205a;
+    border-radius: 4px;
+    margin-right: 6px;
+}
+
+/* ==========================================
+ * Splitters
+ * ========================================== */
+QSplitter::handle {
+    background-color: #1d152a;
+}
+
+QSplitter::handle:hover {
+    background-color: #7c3aed;
+}
+
+QSplitter::handle:pressed {
+    background-color: #a855f7;
+}
+
+QSplitter::handle:horizontal {
+    width: 3px;
+}
+
+QSplitter::handle:vertical {
+    height: 3px;
+}
+
+/* ==========================================
+ * ToolTips
+ * ========================================== */
+QToolTip {
+    background-color: #1f1430;
+    color: #f3eefc;
+    border: 1px solid #6b21a8;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 11px;
+}
+
+/* ==========================================
+ * Checkboxes & Radio Buttons
+ * ========================================== */
+QCheckBox, QRadioButton {
+    color: #ede9f6;
+    spacing: 7px;
+}
+
+QCheckBox::indicator, QRadioButton::indicator {
+    width: 15px;
+    height: 15px;
+    background-color: #161122;
+    border: 1px solid #3d2b56;
+    border-radius: 3px;
+}
+
+QRadioButton::indicator {
+    border-radius: 8px;
+}
+
+QCheckBox::indicator:hover, QRadioButton::indicator:hover {
+    border-color: #9d5ce5;
+    background-color: #241838;
+}
+
+QCheckBox::indicator:checked, QRadioButton::indicator:checked {
+    background-color: #7c3aed;
+    border-color: #a855f7;
+}
+
+QCheckBox::indicator:disabled, QRadioButton::indicator:disabled {
+    background-color: #151020;
+    border-color: #271a36;
+}
+
+/* ==========================================
+ * Progress Bars
+ * ========================================== */
+QProgressBar {
+    background-color: #150f21;
+    border: 1px solid #311e47;
+    border-radius: 4px;
+    text-align: center;
+    color: #f3eefc;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+QProgressBar::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #7c3aed, stop:1 #a855f7);
+    border-radius: 3px;
+}
+
+/* ==========================================
+ * Table & Tree Headers
+ * ========================================== */
+QHeaderView::section {
+    background-color: #181125;
+    color: #c4b5fd;
+    border: none;
+    border-right: 1px solid #281a3a;
+    border-bottom: 1px solid #281a3a;
+    padding: 5px 8px;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+QHeaderView::section:hover {
+    background-color: #241638;
+    color: #ffffff;
+}
+
+/* ==========================================
+ * Terminal Widget Display
+ * ========================================== */
+QPlainTextEdit#terminalDisplay {
+    background-color: #120e1a;
+    color: #ede9f6;
+    border: none;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 10pt;
+    selection-background-color: #6b21a8;
+    selection-color: #ffffff;
+}
+
+/* ==========================================
+ * Dialogs (QMessageBox, FileDialog, etc.)
+ * ========================================== */
+QMessageBox {
+    background-color: #171222;
+}
+
+QMessageBox QLabel {
+    color: #ede9f6;
+    font-size: 12px;
+}
+
+QMessageBox QPushButton {
+    min-width: 75px;
+}
+
+

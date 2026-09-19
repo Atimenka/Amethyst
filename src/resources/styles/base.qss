@@ -1,20 +1,20 @@
 
 QWidget {
-    font-family: "Segoe UI", "Consolas", monospace;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Inter", "Roboto", "Helvetica Neue", sans-serif;
     font-size: 12px;
 }
 
 QHexView {
-    font-family: "Consolas", monospace;
-    font-size: 16px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 14px;
 }
 
 QPushButton {
-    padding: 6px 12px;
+    padding: 6px 14px;
 }
 
 QComboBox {
-    padding: 2px;
+    padding: 4px 8px;
 }
 
 QComboBox::drop-down {
@@ -27,7 +27,7 @@ QComboBox::down-arrow {
 }
 
 QLineEdit, QTextEdit, QPlainTextEdit {
-    padding: 2px;
+    padding: 4px 6px;
 }
 
 #filesTabWidget QTabBar::close-button {
@@ -40,15 +40,16 @@ QLineEdit, QTextEdit, QPlainTextEdit {
 }
 
 #filesTabWidget QTabBar::tab {
-    padding: 5px;
-    height: 16px;
-    min-width: 200px;
+    padding: 6px 14px;
+    height: 18px;
+    min-width: 100px;
+    max-width: 240px;
 }
 
 #toolTabWidget QTabBar::tab {
-    padding: 5px;
+    padding: 5px 12px;
     height: 20px;
-    min-width: 100px;
+    min-width: 90px;
     max-width: 200px;
 }
 
@@ -83,7 +84,7 @@ QTreeView {
 }
 
 QMenu::item {
-    padding: 4px 20px 4px 4px;
+    padding: 5px 22px 5px 8px;
 }
 
 QMenu::indicator {
@@ -96,21 +97,21 @@ QMenu::indicator {
 /* Vertical QScrollBar */
 
 QScrollBar:vertical {
-    width: 16px;
+    width: 10px;
 }
 
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
-    height: 16px;
+    height: 0px;
 }
 
 /* Horizontal QScrollBar */
 
 QScrollBar:horizontal {
-    height: 16px;
+    height: 10px;
 }
 
 QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
-    width: 16px;
+    width: 0px;
 }
 
 QWidget#searchPanel QLineEdit {

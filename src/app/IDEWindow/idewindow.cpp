@@ -26,7 +26,9 @@ IDEWindow::IDEWindow(const QString &ProjectPath, QWidget *parent)
 
     // - - Widgets - -
     m_statusBar = statusBar();
+    m_statusBar->setObjectName("ideStatusBar");
     m_statusLabel = new QLabel(this);
+    m_statusLabel->setObjectName("ideStatusLabel");
     m_statusBar->addPermanentWidget(m_statusLabel);
 
     m_mainWidget = new QWidget(this);

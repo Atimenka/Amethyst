@@ -96,6 +96,7 @@ if [ -z "$AMETHYST_EXE" ]; then
     # If still not found, try cross-compiling with mingw-w64 on Arch
     if [ -z "$AMETHYST_EXE" ] && command -v x86_64-w64-mingw32-g++ >/dev/null 2>&1; then
         echo -e "${CYAN}[1/4] Compiling amethyst.exe with mingw-w64...${NC}"
+        rm -rf build_mingw
         cmake -B build_mingw -S src \
             -DCMAKE_SYSTEM_NAME=Windows \
             -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
@@ -113,8 +114,12 @@ if [ -n "$AMETHYST_EXE" ] && [ -f "$AMETHYST_EXE" ]; then
     echo -e "${GREEN}[OK] Found amethyst.exe: $AMETHYST_EXE${NC}"
     cp -f "$AMETHYST_EXE" "$BUNDLE_DIR/amethyst.exe"
 else
-    echo -e "${RED}[ERROR] amethyst.exe is required in $BUNDLE_DIR/amethyst.exe to assemble installer!${NC}"
-    echo -e "Please place amethyst.exe into: $BUNDLE_DIR/amethyst.exe"
+    echo -e "${RED}[ERROR] amethyst.exe не найден!${NC}"
+    echo -e "${YELLOW}Для сборки Setup-инсталлятора необходим Windows-бинарник amethyst.exe.${NC}"
+    echo -e "${YELLOW}Как его получить (выберите любой способ):${NC}"
+    echo -e "  1. Запустите сборку в Windows через: ${CYAN}packaging\\windows\\build_installer.bat${NC}"
+    echo -e "  2. Или скопируйте готовый amethyst.exe в: ${CYAN}$BUNDLE_DIR/amethyst.exe${NC}"
+    echo -e "  3. Или установите Windows-версию Qt6 в Arch: ${CYAN}yay -S mingw-w64-qt6-base mingw-w64-qt6-svg${NC}"
     exit 1
 fi
 

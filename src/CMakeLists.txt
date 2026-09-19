@@ -386,4 +386,14 @@ install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-qt_finalize_executable(${PROJECT_NAME})
+# Guard against missing app.exe.manifest.in when cross-compiling with host Linux Qt
+set(CAN_FINALIZE TRUE)
+if(WIN32 AND NOT CMAKE_HOST_WIN32)
+    if(NOT EXISTS "${Qt6_DIR}/windows/app.exe.manifest.in" AND NOT EXISTS "${Qt6Core_DIR}/../Qt6/windows/app.exe.manifest.in")
+        set(CAN_FINALIZE FALSE)
+    endif()
+endif()
+
+if(CAN_FINALIZE)
+    qt_finalize_executable(${PROJECT_NAME})
+endif()

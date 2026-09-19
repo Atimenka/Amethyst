@@ -15,8 +15,11 @@
 #include "projects_history_manager.h"
 
 #include <QDir>
+#include <QEasingCurve>
 #include <QFile>
+#include <QGraphicsOpacityEffect>
 #include <QIcon>
+#include <QPropertyAnimation>
 
 WelcomeForm::WelcomeForm(QWidget* parent)
     : QWidget(parent)
@@ -47,15 +50,37 @@ WelcomeForm::WelcomeForm(QWidget* parent)
             });
 
     connect(m_recentPage, &RecentProjectsPage::newProjectRequested, this, [this]() {
-        m_stack->setCurrentIndex(1);
+        switchPage(1);
     });
 
     connect(m_createPage, &CreateProjectPage::backRequested, this, [this]() {
-        m_stack->setCurrentIndex(0);
+        switchPage(0);
     });
 
     connect(m_createPage, &CreateProjectPage::projectCreated,
             this, &WelcomeForm::openProject);
+}
+
+void WelcomeForm::switchPage(int targetIndex)
+{
+    if (m_stack->currentIndex() == targetIndex)
+        return;
+
+    auto* nextWidget = m_stack->widget(targetIndex);
+    auto* opacity = new QGraphicsOpacityEffect(nextWidget);
+    nextWidget->setGraphicsEffect(opacity);
+
+    m_stack->setCurrentIndex(targetIndex);
+
+    auto* anim = new QPropertyAnimation(opacity, "opacity", this);
+    anim->setDuration(220);
+    anim->setStartValue(0.0);
+    anim->setEndValue(1.0);
+    anim->setEasingCurve(QEasingCurve::OutCubic);
+    connect(anim, &QPropertyAnimation::finished, nextWidget, [nextWidget]() {
+        nextWidget->setGraphicsEffect(nullptr);
+    });
+    anim->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
 void WelcomeForm::openProject(const QString& path, const QString& language)

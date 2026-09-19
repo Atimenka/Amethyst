@@ -421,3 +421,34 @@ QPushButton#SettingsApplyBtn {
 QPushButton#SettingsApplyBtn:hover {
     background: #a855f7;
 }
+
+/* Disk Image Viewer */
+#DiskImagePage QTableWidget,
+QDialog#DiskImageViewerDialog QTableWidget {
+    background-color: #130f1c;
+    border: 1px solid #2e1d44;
+    gridline-color: #231636;
+    border-radius: 4px;
+}
+
+#DiskImagePage QTableWidget::item:selected,
+QDialog#DiskImageViewerDialog QTableWidget::item:selected {
+    background-color: #442270;
+    color: #ffffff;
+}
+
+#DiskImagePage QTableWidget::item:hover,
+QDialog#DiskImageViewerDialog QTableWidget::item:hover {
+    background-color: #251838;
+}
+
+#DiskImagePage QGroupBox,
+QDialog#DiskImageViewerDialog QGroupBox {
+    border: 1px solid #362250;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding-top: 14px;
+    color: #c4b5fd;
+    font-weight: bold;
+}
+

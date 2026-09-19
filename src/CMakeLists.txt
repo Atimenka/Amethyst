@@ -9,6 +9,29 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# ==========================================
+# Build Speed Optimizations (ccache, mold/lld)
+# ==========================================
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+    message(STATUS "Build speedup: ccache detected -> ${CCACHE_PROGRAM}")
+    set(CMAKE_CXX_COMPILER_LAUNCHER "${CCACHE_PROGRAM}")
+endif()
+
+if(NOT WIN32 AND NOT APPLE)
+    find_program(MOLD_PATH mold)
+    if(MOLD_PATH)
+        message(STATUS "Build speedup: using mold linker -> ${MOLD_PATH}")
+        add_link_options("-fuse-ld=mold")
+    else()
+        find_program(LLD_PATH ld.lld)
+        if(LLD_PATH)
+            message(STATUS "Build speedup: using lld linker -> ${LLD_PATH}")
+            add_link_options("-fuse-ld=lld")
+        endif()
+    endif()
+endif()
+
 if(MSVC)
     add_compile_options(/utf-8)
 endif()
@@ -136,6 +159,9 @@ qt_add_executable(${PROJECT_NAME}
     core/project/projects_history_manager.cpp
     core/project/projects_history_manager.h
 
+    core/disk/disk_image_parser.cpp
+    core/disk/disk_image_parser.h
+
     core/search/searchengine.cpp
     core/search/searchengine.h
 
@@ -176,6 +202,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/core/file
     ${CMAKE_CURRENT_SOURCE_DIR}/core/git
     ${CMAKE_CURRENT_SOURCE_DIR}/core/project
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/disk
     ${CMAKE_CURRENT_SOURCE_DIR}/core/settings
     ${CMAKE_CURRENT_SOURCE_DIR}/utils
     ${CMAKE_CURRENT_SOURCE_DIR}/ui
@@ -185,6 +212,23 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/app/WelcomeWindow/RecentProjectsPage
     ${CMAKE_CURRENT_SOURCE_DIR}/app/WelcomeWindow/CreateProjectPage
     ${CMAKE_CURRENT_SOURCE_DIR}/app/WelcomeWindow/ProjectCard
+)
+
+# Precompile common Qt headers to drastically accelerate compilation
+target_precompile_headers(${PROJECT_NAME} PRIVATE
+    <QtCore/QObject>
+    <QtCore/QString>
+    <QtCore/QVector>
+    <QtCore/QList>
+    <QtCore/QByteArray>
+    <QtCore/QMap>
+    <QtCore/QHash>
+    <QtCore/QDebug>
+    <QtWidgets/QWidget>
+    <QtWidgets/QLabel>
+    <QtWidgets/QPushButton>
+    <QtGui/QIcon>
+    <QtGui/QPixmap>
 )
 
 file(GLOB_RECURSE PHOICONS_FILES

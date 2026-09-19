@@ -8,6 +8,9 @@ class AboutDialog : public QDialog {
 public:
     explicit AboutDialog(QWidget *parent = nullptr);
     static void showAbout(QWidget *parent = nullptr);
+
+protected:
+    void showEvent(QShowEvent* event) override;
 };
 
 #endif // ABOUTDIALOG_H

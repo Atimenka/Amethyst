@@ -16,6 +16,7 @@
 #include <QIcon>
 #include <QLabel>
 #include <QPixmap>
+#include <QPropertyAnimation>
 #include <QPushButton>
 #include <QUrl>
 #include <QVBoxLayout>
@@ -130,6 +131,16 @@ AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent) {
     btnLayout->addWidget(closeBtn);
 
     mainLayout->addLayout(btnLayout);
+}
+
+void AboutDialog::showEvent(QShowEvent *event) {
+    QDialog::showEvent(event);
+    auto *anim = new QPropertyAnimation(this, "windowOpacity", this);
+    anim->setDuration(240);
+    anim->setStartValue(0.0);
+    anim->setEndValue(1.0);
+    anim->setEasingCurve(QEasingCurve::OutCubic);
+    anim->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
 void AboutDialog::showAbout(QWidget *parent) {

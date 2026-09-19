@@ -33,6 +33,7 @@ private:
     RecentProjectsPage* m_recentPage;
     CreateProjectPage*  m_createPage;
 
+    void switchPage(int targetIndex);
     void loadStyles();
 };
 

@@ -74,6 +74,18 @@ ToolsMenu::ToolsMenu() : BaseMenu(tr("Tools")) {
 
     this->addMenu(tabModulesMenu);
     this->addMenu(windowModulesMenu);
+
+    this->addSeparator();
+    auto* imgAction = new QAction(tr("Просмотрщик образов (.img / .iso)..."), this);
+    imgAction->setShortcut(QKeySequence("Ctrl+Shift+I"));
+    connect(imgAction, &QAction::triggered, this, []() {
+        auto* module = ModuleManager::instance().create<WindowBase>("Просмотрщик образов дисков (.img / .iso)");
+        if (module) {
+            module->setAttribute(Qt::WA_DeleteOnClose);
+            module->showWindow();
+        }
+    });
+    this->addAction(imgAction);
 }
 
 void ToolsMenu::setupConnections(IDEWindow* ideWind){

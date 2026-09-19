@@ -57,7 +57,36 @@ powershell -ExecutionPolicy Bypass -File packaging\windows\package.ps1
 
 ---
 
-## 🛠 Способ 2: Ручная пошаговая сборка и развёртывание
+## 🐧 Способ 2: Сборка Windows Setup-инсталлятора прямо из Arch Linux / Arch WSL
+
+Если вы работаете в **Arch Linux** или **Arch Linux в WSL**, вам **не нужно** переключаться в Windows, чтобы собрать готовый Setup-установщик! В репозитории есть специальный скрипт:
+
+```bash
+./packaging/windows/build_installer_arch.sh
+```
+
+### Вариант А: Если вы работаете в Arch Linux WSL (Windows Subsystem for Linux)
+1. Установите Inno Setup 6 в Windows (он по умолчанию устанавливается в `C:\Program Files (x86)\Inno Setup 6\ISCC.exe`);
+2. В терминале Arch WSL запустите:
+   ```bash
+   ./packaging/windows/build_installer_arch.sh
+   ```
+3. Скрипт через WSL Interop сам вызовет компилятор `ISCC.exe` и утилиту `windeployqt`, соберёт все библиотеки Qt6 и скомпилирует инсталлятор **`dist/Amethyst_Setup_x64.exe`**!
+
+### Вариант Б: Если вы работаете в чистом Arch Linux (без Windows)
+1. Установите Wine и утилиту распаковки:
+   ```bash
+   sudo pacman -S --needed wine innoextract
+   ```
+2. Запустите скрипт сборщика:
+   ```bash
+   ./packaging/windows/build_installer_arch.sh
+   ```
+3. Скрипт сам автоматически скачает портативный компилятор Inno Setup 6, упакует все DLL Qt6, создаст нужные ярлыки, контекстное меню реестра и скомпилирует готовый Windows-установщик `Amethyst_Setup_x64.exe` прямо в Linux!
+
+---
+
+## 🛠 Способ 3: Ручная пошаговая сборка и развёртывание
 
 Если вы хотите выполнить все этапы вручную через командную строку:
 

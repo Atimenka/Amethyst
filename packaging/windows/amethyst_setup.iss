@@ -27,7 +27,7 @@ DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 
 ; Visuals & Branding
-SetupIconFile=..\..\src\resources\icons\amethyst.ico
+SetupIconFile=amethyst.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 WizardStyle=modern
 WizardSizePercent=105
@@ -51,12 +51,12 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
-Name: "contextmenu"; Description: "Добавить «Открыть в Amethyst» в контекстное меню Проводника"; GroupDescription: "Интеграция с системой:"; Flags: unchecked
+Name: "contextmenu"; Description: "Добавить «Открыть в Amethyst» в контекстное меню Проводника"; GroupDescription: "Интеграция с системой:"
 
 [Files]
 ; Main Executable & deployed Qt runtime DLLs from the staging directory
 Source: "bundle\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\..\src\resources\icons\amethyst.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "amethyst.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\amethyst.ico"

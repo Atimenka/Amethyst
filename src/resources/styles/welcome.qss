@@ -1,122 +1,361 @@
+/*
+ * Amethyst Welcome Screen Stylesheet
+ * Copyright (c) 2026 Amethyst IDE / Atimenka
+ * SPDX-License-Identifier: GPL-3.0 license
+ */
+
 WelcomeForm {
-    background: #1e1e1e;
+    background-color: #120f18;
+    color: #ede9f6;
 }
 
+#RecentProjectsPage {
+    background-color: #120f18;
+}
+
+/* ==========================================
+ * Welcome Header
+ * ========================================== */
+#WelcomeHeader {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #221636, stop:0.5 #1b122b, stop:1 #160e24);
+    border: 1px solid #3d255d;
+    border-radius: 10px;
+}
+
+#WelcomeTitle {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+#WelcomeSubtitle {
+    color: #a795c2;
+    font-size: 11px;
+}
+
+#WelcomeDevBadge {
+    background: #2b1744;
+    color: #c084fc;
+    border: 1px solid #7c3aed;
+    border-radius: 13px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+#WelcomeDevBadge:hover {
+    background: #3c1e60;
+    color: #ffffff;
+    border-color: #a855f7;
+}
+
+#WelcomeGithubBtn,
+#WelcomeAboutBtn {
+    background: #231936;
+    color: #d8b4fe;
+    border: 1px solid #582b88;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+#WelcomeGithubBtn:hover,
+#WelcomeAboutBtn:hover {
+    background: #392454;
+    color: #ffffff;
+    border-color: #9d5ce5;
+}
+
+#RecentProjectsTitle {
+    color: #d8b4fe;
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 2px;
+}
+
+/* ==========================================
+ * Project Cards & Scroll Area
+ * ========================================== */
 #CardsScrollArea,
 #CardsScrollArea > QWidget > QWidget {
     background: transparent;
     border: none;
 }
 
+#ProjectCard {
+    background-color: #1b1426;
+    border: 1px solid #2e2042;
+    border-radius: 8px;
+}
+
+#ProjectCard:hover {
+    background-color: #261b38;
+    border: 1px solid #6b21a8;
+}
+
+#ProjectCardBadge {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #7c3aed, stop:1 #4c1d95);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 11px;
+    border-radius: 8px;
+}
+
+#ProjectCardName {
+    color: #f3eefc;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#ProjectCardLang {
+    color: #c084fc;
+    font-size: 10px;
+    font-weight: 600;
+    background: #2f194c;
+    border-radius: 4px;
+    padding: 1px 6px;
+}
+
+#ProjectCardPath {
+    color: #8c7e9f;
+    font-size: 11px;
+}
+
+#ProjectCardDate {
+    color: #6d5e80;
+    font-size: 10px;
+}
+
+#ProjectCardOpenBtn {
+    background: #7c3aed;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+#ProjectCardOpenBtn:hover {
+    background: #9055ff;
+}
+
+#ProjectCardRemoveBtn {
+    background: transparent;
+    color: #6d5e80;
+    border: none;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+#ProjectCardRemoveBtn:hover {
+    background: #3b1828;
+    color: #ef4444;
+}
+
+/* ==========================================
+ * Empty State
+ * ========================================== */
+#WelcomeEmptyState {
+    background-color: #181223;
+    border: 1px dashed #3a2852;
+    border-radius: 12px;
+}
+
+#EmptyStateTitle {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#EmptyStateText {
+    color: #a99dbd;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+#EmptyStateDevText {
+    color: #c084fc;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+#EmptyStateNewBtn {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #7c3aed, stop:1 #9333ea);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#EmptyStateNewBtn:hover {
+    background: #a855f7;
+}
+
+#EmptyStateOpenBtn {
+    background: #261d36;
+    color: #e9d5ff;
+    border: 1px solid #5b21b6;
+    border-radius: 6px;
+    padding: 9px 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#EmptyStateOpenBtn:hover {
+    background: #362450;
+    border-color: #8b5cf6;
+    color: #ffffff;
+}
+
+/* ==========================================
+ * Bottom Toolbar
+ * ========================================== */
+#WelcomeBottomBar {
+    background: #140f1d;
+    border-top: 1px solid #281d36;
+    padding-top: 8px;
+}
+
+#WelcomeInfoLabel {
+    color: #75678a;
+    font-size: 11px;
+}
+
+#WelcomeOpenBtn {
+    background: #251c36;
+    color: #e9d5ff;
+    border: 1px solid #4c1d95;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#WelcomeOpenBtn:hover {
+    background: #352350;
+    border-color: #7c3aed;
+    color: #ffffff;
+}
+
+#WelcomeNewBtn {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #7c3aed, stop:1 #9333ea);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 18px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#WelcomeNewBtn:hover {
+    background: #a855f7;
+}
+
+/* ==========================================
+ * Create Project Page
+ * ========================================== */
+#CreateProjectPage {
+    background: #120f18;
+}
+
+#CreateProjectTitle {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#CreateProjectSubtitle {
+    color: #9d8eb5;
+    font-size: 12px;
+}
+
+#FormLabel {
+    color: #c4b5fd;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#FormInput,
+#FormCombo {
+    background: #1b1426;
+    color: #f3eefc;
+    border: 1px solid #3c2954;
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 12px;
+}
+
+#FormInput:focus,
+#FormCombo:focus {
+    border: 1px solid #9d5ce5;
+    background: #221833;
+}
+
+#FormCombo::drop-down {
+    border: none;
+}
+
+#CreateProjectBackBtn {
+    background: #251c36;
+    color: #d8b4fe;
+    border: 1px solid #4c1d95;
+    border-radius: 6px;
+    padding: 7px 18px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#CreateProjectBackBtn:hover {
+    background: #352350;
+    border-color: #7c3aed;
+    color: #ffffff;
+}
+
+#CreateProjectSubmitBtn {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #7c3aed, stop:1 #9333ea);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 22px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#CreateProjectSubmitBtn:hover {
+    background: #a855f7;
+}
+
+#CreateProjectInfoLabel {
+    color: #f87171;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ==========================================
+ * Scrollbars
+ * ========================================== */
 QScrollBar:vertical {
-    background: #1a1a1a;
-    width: 5px;
+    background: #15101f;
+    width: 6px;
     margin: 0;
 }
 
 QScrollBar::handle:vertical {
-    background: #3a3a3a;
-    border-radius: 2px;
+    background: #3e275d;
+    border-radius: 3px;
     min-height: 24px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #6b21a8;
 }
 
 QScrollBar::add-line:vertical,
 QScrollBar::sub-line:vertical {
     height: 0;
-}
-
-#ProjectCard {
-    background: #232323;
-    border-bottom: 1px solid #2a2a2a;
-}
-
-#ProjectCard:hover {
-    background: #292929;
-}
-
-#ProjectCardBadge {
-    background: #3a3a3a;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 10px;
-    border-radius: 5px;
-}
-
-#ProjectCardBadge[language="C"] {
-    background: #4a6fa5;
-}
-
-#ProjectCardBadge[language="C++"] {
-    background: #00599c;
-}
-
-#ProjectCardBadge[language="ASM"] {
-    background: #8b0000;
-}
-
-#ProjectCardBadge[language="C + ASM"] {
-    background: #6a0dad;
-}
-
-#ProjectCardBadge[language="Custom"] {
-    background: #2e7d32;
-}
-
-#ProjectCardName {
-    color: #e8e8e8;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-#ProjectCardPath {
-    color: #808080;
-    font-size: 11px;
-}
-
-#ProjectCardLastOpened {
-    color: #5f5f5f;
-    font-size: 10px;
-}
-
-#WelcomeToolbar {
-    background: #141414;
-    border-top: 1px solid #2a2a2a;
-}
-
-#CreateProjectPage {
-    background: #1e1e1e;
-}
-
-#CreateProjectPage QLabel {
-    color: #aaa;
-    font-size: 12px;
-}
-
-#CreateProjectPage QLabel[error="true"] {
-    color: #cf4444;
-}
-
-#CreateProjectPage QLineEdit,
-#CreateProjectPage QComboBox {
-    background: #252525;
-    color: #e0e0e0;
-    border: 1px solid #333;
-    border-radius: 4px;
-    padding: 5px 8px;
-    font-size: 12px;
-}
-
-#CreateProjectPage QLineEdit:focus,
-#CreateProjectPage QComboBox:focus {
-    border-color: #1e4a72;
-}
-
-#CreateProjectPage QComboBox::drop-down {
-    border: none;
-}
-
-#CreateProjectInfoLabel {
-    color: #cf4444;
-    font-size: 12px;
-    font-weight: bold;
 }

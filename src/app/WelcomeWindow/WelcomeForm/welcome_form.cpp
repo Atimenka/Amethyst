@@ -1,13 +1,11 @@
 /*
- * This file is part of the Cremniy IDE source code.
+ * This file is part of the Amethyst IDE source code.
  *
- * Copyright (c) 2026 Cremniy IDE
+ * Copyright (c) 2026 Amethyst IDE / Cremniy IDE
  * SPDX-License-Identifier: GPL-3.0 license
  *
  * Repository:
- * https://github.com/munirov/cremniy
- *
- * Modified by Ilya (https://github.com/kykyrudza) on 2026-05-12
+ * https://github.com/Atimenka/Amethyst
  */
 
 #include "welcome_form.h"
@@ -18,12 +16,15 @@
 
 #include <QDir>
 #include <QFile>
+#include <QIcon>
 
 WelcomeForm::WelcomeForm(QWidget* parent)
     : QWidget(parent)
 {
     setWindowTitle("Amethyst");
-    resize(500, 380);
+    setWindowIcon(QIcon(":/icons/icon.svg"));
+    resize(780, 520);
+    setMinimumSize(680, 460);
 
     loadStyles();
 

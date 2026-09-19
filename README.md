@@ -64,6 +64,12 @@ Amethyst is a **Windows-first** fork. While the original Cremniy was primarily d
 
 A Windows installer will be provided in the **Releases** section. No manual build is required for end users.
 
+## Developer & Credits
+
+- **Fork Developer:** [Atimenka](https://github.com/Atimenka)
+- **GitHub Repository:** [https://github.com/Atimenka/Amethyst](https://github.com/Atimenka/Amethyst)
+- **Original Project:** [Cremniy](https://github.com/munirov/cremniy) by [Munirov](https://github.com/munirov)
+
 ## Contributing
 
 Pull requests and issues are welcome. If you take on a task, please comment on the corresponding issue to avoid duplicate work.

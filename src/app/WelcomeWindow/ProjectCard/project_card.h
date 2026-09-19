@@ -1,13 +1,11 @@
 /*
- * This file is part of the Cremniy IDE source code.
+ * This file is part of the Amethyst IDE source code.
  *
- * Copyright (c) 2026 Cremniy IDE
+ * Copyright (c) 2026 Amethyst IDE / Cremniy IDE
  * SPDX-License-Identifier: GPL-3.0 license
  *
  * Repository:
- * https://github.com/munirov/cremniy
- *
- * Modified by Ilya (https://github.com/kykyrudza) on 2026-05-12
+ * https://github.com/Atimenka/Amethyst
  */
 
 #ifndef PROJECT_CARD_H
@@ -15,6 +13,8 @@
 
 #include "projects_history_manager.h"
 #include <QWidget>
+
+class QMouseEvent;
 
 class ProjectCard : public QWidget {
     Q_OBJECT
@@ -27,6 +27,9 @@ public:
 signals:
     void openRequested(const QString& path);
     void removeRequested(const QString& path);
+
+protected:
+    void mouseDoubleClickEvent(QMouseEvent* event) override;
 
 private:
     QString m_path;

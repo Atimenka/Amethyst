@@ -135,6 +135,12 @@ cmake --build build
 ```
 </details>
 
+## Разработчик и благодарности
+
+- **Главный разработчик форка:** [Atimenka](https://github.com/Atimenka)
+- **Репозиторий проекта:** [https://github.com/Atimenka/Amethyst](https://github.com/Atimenka/Amethyst)
+- **Оригинальный проект:** [Cremniy](https://github.com/munirov/cremniy), автор [Munirov](https://github.com/munirov)
+
 ## Участие в разработке 👋
 
 Pull request'ы и issues приветствуются. Если вы берете задачу в работу, пожалуйста, оставьте комментарий к соответствующему issue.

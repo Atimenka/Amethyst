@@ -1,13 +1,11 @@
 /*
- * This file is part of the Cremniy IDE source code.
+ * This file is part of the Amethyst IDE source code.
  *
- * Copyright (c) 2026 Cremniy IDE
+ * Copyright (c) 2026 Amethyst IDE / Cremniy IDE
  * SPDX-License-Identifier: GPL-3.0 license
  *
  * Repository:
- * https://github.com/munirov/cremniy
- *
- * Modified by Ilya (https://github.com/kykyrudza) on 2026-05-12
+ * https://github.com/Atimenka/Amethyst
  */
 
 #ifndef RECENT_PROJECTS_PAGE_H
@@ -15,6 +13,8 @@
 
 #include <QVBoxLayout>
 #include <QWidget>
+
+class QScrollArea;
 
 class RecentProjectsPage : public QWidget {
     Q_OBJECT
@@ -29,7 +29,9 @@ signals:
     void newProjectRequested();
 
 private:
-    QVBoxLayout* m_cardsLayout;
+    QVBoxLayout* m_cardsLayout{nullptr};
+    QWidget*     m_emptyStateWidget{nullptr};
+    QScrollArea* m_scrollArea{nullptr};
 
     void clearCards() const;
 };

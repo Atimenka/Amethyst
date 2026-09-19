@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/amethyst_icon_stroke.svg" width="220" alt="Amethyst logo">
+<img src="docs/amethyst_icon_stroke.svg" width="330" alt="Amethyst logo">
 
 <h2>Amethyst</h2>
 <p><b>A Windows-focused fork of Cremniy — a low-level IDE that keeps code, bytes, and binaries in one place.</b></p>

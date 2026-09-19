@@ -61,19 +61,24 @@ ProjectCard::ProjectCard(const utils::RecentProject& project, QWidget* parent)
     infoLayout->addLayout(nameRow);
     infoLayout->addWidget(pathLabel);
 
-    if (project.lastOpened.isValid()) {
-        const auto diff = project.lastOpened.secsTo(QDateTime::currentDateTime());
+    if (!project.lastOpenedAt.isEmpty()) {
+        QDateTime dt = QDateTime::fromString(project.lastOpenedAt, Qt::ISODate);
         QString dateText;
-        if (diff < 60) {
-            dateText = tr("только что");
-        } else if (diff < 3600) {
-            dateText = tr("%1 мин. назад").arg(diff / 60);
-        } else if (diff < 86400) {
-            dateText = tr("%1 ч. назад").arg(diff / 3600);
-        } else if (diff < 86400 * 7) {
-            dateText = tr("%1 дн. назад").arg(diff / 86400);
+        if (dt.isValid()) {
+            const auto diff = dt.secsTo(QDateTime::currentDateTime());
+            if (diff < 60) {
+                dateText = tr("только что");
+            } else if (diff < 3600) {
+                dateText = tr("%1 мин. назад").arg(diff / 60);
+            } else if (diff < 86400) {
+                dateText = tr("%1 ч. назад").arg(diff / 3600);
+            } else if (diff < 86400 * 7) {
+                dateText = tr("%1 дн. назад").arg(diff / 86400);
+            } else {
+                dateText = dt.toString("dd.MM.yyyy");
+            }
         } else {
-            dateText = project.lastOpened.toString("dd.MM.yyyy");
+            dateText = project.lastOpenedAt;
         }
 
         auto* dateLabel = new QLabel(dateText, this);

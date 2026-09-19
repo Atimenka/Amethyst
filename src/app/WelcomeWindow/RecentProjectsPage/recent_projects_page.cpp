@@ -230,7 +230,7 @@ void RecentProjectsPage::reload()
 {
     clearCards();
 
-    const auto projects = utils::ProjectsHistoryManager::instance().recentProjects();
+    const auto projects = utils::ProjectsHistoryManager::loadProjectsHistory();
 
     if (projects.isEmpty()) {
         m_scrollArea->hide();
@@ -249,7 +249,7 @@ void RecentProjectsPage::reload()
         auto* card = new ProjectCard(project);
         connect(card, &ProjectCard::openRequested, this, &RecentProjectsPage::openProjectRequested);
         connect(card, &ProjectCard::removeRequested, this, [this](const QString& path) {
-            utils::ProjectsHistoryManager::instance().remove(path);
+            utils::ProjectsHistoryManager::removeProjectFromHistory(path);
             reload();
         });
 

@@ -113,12 +113,25 @@ cmake --build . --config Release
 </details>
 
 <details>
-<summary><b>🐧 Linux</b></summary>
+<summary><b>🐧 Linux (Arch Linux / Manjaro)</b></summary>
 
 ```bash
-mkdir build && cd build
-cmake ../src -DCMAKE_BUILD_TYPE=Release
-cmake --build .
+sudo pacman -S --needed base-devel cmake ninja qt6-base qt6-svg qt6-tools libgit2
+
+cmake -B build -S src -G "Ninja" -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
+</details>
+
+<details>
+<summary><b>🐧 Linux (Debian / Ubuntu)</b></summary>
+
+```bash
+sudo apt update
+sudo apt install -y build-essential cmake ninja-build qt6-base-dev qt6-svg-dev qt6-tools-dev qt6-tools-dev-tools libgit2-dev
+
+cmake -B build -S src -G "Ninja" -DCMAKE_BUILD_TYPE=Release
+cmake --build build
 ```
 </details>
 

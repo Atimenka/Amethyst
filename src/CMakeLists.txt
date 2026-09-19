@@ -72,10 +72,10 @@ if(NOT AMETHYST_LIBGIT2_TARGET)
 endif()
 
 if(NOT WIN32)
-    find_package(ZLIB REQUIRED)
-    find_package(OpenSSL REQUIRED)
+    find_package(ZLIB QUIET)
+    find_package(OpenSSL QUIET)
     find_library(PCRE_LIB NAMES pcre pcre2-8)
-    find_library(HTTP_PARSER_LIB NAMES http_parser REQUIRED)
+    find_library(HTTP_PARSER_LIB NAMES http_parser llhttp)
 endif()
 
 set(PROJECT_SOURCES
@@ -226,13 +226,18 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 )
 
 if(NOT WIN32)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        ${HTTP_PARSER_LIB}
-        ${PCRE_LIB}
-        OpenSSL::SSL
-        OpenSSL::Crypto
-        ZLIB::ZLIB
-    )
+    if(HTTP_PARSER_LIB)
+        target_link_libraries(${PROJECT_NAME} PRIVATE ${HTTP_PARSER_LIB})
+    endif()
+    if(PCRE_LIB)
+        target_link_libraries(${PROJECT_NAME} PRIVATE ${PCRE_LIB})
+    endif()
+    if(TARGET OpenSSL::SSL)
+        target_link_libraries(${PROJECT_NAME} PRIVATE OpenSSL::SSL OpenSSL::Crypto)
+    endif()
+    if(TARGET ZLIB::ZLIB)
+        target_link_libraries(${PROJECT_NAME} PRIVATE ZLIB::ZLIB)
+    endif()
 endif()
 
 set(APP_LANGUAGES

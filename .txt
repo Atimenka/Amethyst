@@ -1,0 +1,65 @@
+[root@DESKTOP-FBIK2RN Amethyst]# cmake -B build -S src -G "Ninja" -DCMAKE_BUILD_TYPE=Debug
+cmake --build build -j $(nproc)
+-- The CXX compiler identification is GNU 16.2.1
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/sbin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Build speedup: ccache detected -> /usr/sbin/ccache
+-- Build speedup: using mold linker -> /usr/sbin/mold
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Found OpenGL: /usr/lib/libOpenGL.so
+-- Found WrapOpenGL: TRUE
+-- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR)
+-- The C compiler identification is GNU 16.2.1
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/sbin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Configuring done (22.6s)
+-- Generating done (0.8s)
+-- Build files have been written to: /root/Amethyst/build
+[0/2] Re-checking globbed directories...
+[1/121] Generating app_ru.qm
+Updating '/root/Amethyst/build/app_ru.qm'...
+    Generated 568 translation(s) (566 finished and 2 unfinished)
+[2/121] Generating qtbase_ru.qm
+Updating '/root/Amethyst/build/qtbase_ru.qm'...
+    Generated 1786 translation(s) (1785 finished and 1 unfinished)
+[75/121] Building CXX object CMakeFiles/amethyst.dir/core/disk/disk_image_parser.cpp.o
+/root/Amethyst/src/core/disk/disk_image_parser.cpp: In static member function ‘static bool disk::DiskImageParser::parseImageFile(const QString&, QVector<disk::PartitionInfo>&)’:
+/root/Amethyst/src/core/disk/disk_image_parser.cpp:42:15: warning: ignoring return value of ‘virtual bool QFile::open(QIODeviceBase::OpenMode)’, declared with attribute ‘nodiscard’ [-Wunused-result]
+   42 |         f.open(QIODevice::ReadOnly);
+      |         ~~~~~~^~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/qt6/QtCore/QFile:1,
+                 from /root/Amethyst/src/core/disk/disk_image_parser.cpp:14:
+/usr/include/qt6/QtCore/qfile.h:264:32: note: declared here
+  264 |     QFILE_MAYBE_NODISCARD bool open(OpenMode flags) override;
+      |                                ^~~~
+[116/121] Building CXX object CMakeFiles/amethyst.dir/ui/MenuBar/Menus/Tools/toolsmenu.cpp.o
+FAILED: [code=1] CMakeFiles/amethyst.dir/ui/MenuBar/Menus/Tools/toolsmenu.cpp.o
+/usr/sbin/ccache /usr/sbin/c++ -DQHEXVIEW_ENABLE_DIALOGS -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -I/root/Amethyst/build/amethyst_autogen/include -I/root/Amethyst/src -I/root/Amethyst/src/widgets -I/root/Amethyst/src/core/file -I/root/Amethyst/src/core/git -I/root/Amethyst/src/core/project -I/root/Amethyst/src/core/disk -I/root/Amethyst/src/core/settings -I/root/Amethyst/src/utils -I/root/Amethyst/src/ui -I/root/Amethyst/src/ToolsTabWidget -I/root/Amethyst/src/FilesTabWidget -I/root/Amethyst/src/app/WelcomeWindow/WelcomeForm -I/root/Amethyst/src/app/WelcomeWindow/RecentProjectsPage -I/root/Amethyst/src/app/WelcomeWindow/CreateProjectPage -I/root/Amethyst/src/app/WelcomeWindow/ProjectCard -I/root/Amethyst/src/Modules/Tabs/Binary -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/DiskImage -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/DiskImage/../.. -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/ELF -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/ELF/../.. -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/MBR -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/MBR/../.. -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/PE -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/PE/../.. -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/RAW -I/root/Amethyst/src/Modules/Tabs/Binary/FormatPages/RAW/../.. -I/root/Amethyst/src/Modules/Tabs/STM32Pinout -I/root/Amethyst/src/Modules/Windows/DiskImageViewer -I/root/Amethyst/src/Modules/Windows/DiskImageViewer/../.. -I/root/Amethyst/build -I/root/Amethyst/src/libs/CodeEditor/include -I/root/Amethyst/src/libs/CodeEditor/include/core -I/root/Amethyst/src/libs/CodeEditor/include/widgets -I/root/Amethyst/src/libs/CodeEditor/src/widgets -I/root/Amethyst/src/libs/CodeEditor/third_party/QCodeEditor/include -I/root/Amethyst/src/libs/CodeEditor/../../core/file -I/root/Amethyst/src/libs/CodeEditor/third_party/QCodeEditor/src -I/root/Amethyst/src/libs/HexEditor -I/root/Amethyst/src/libs/HexEditor/include -I/root/Amethyst/src/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtConcurrent -isystem /usr/include/qt6/QtSvg -g -std=gnu++17 -mno-direct-extern-access -Winvalid-pch -include /root/Amethyst/build/CMakeFiles/amethyst.dir/cmake_pch.hxx -MD -MT CMakeFiles/amethyst.dir/ui/MenuBar/Menus/Tools/toolsmenu.cpp.o -MF CMakeFiles/amethyst.dir/ui/MenuBar/Menus/Tools/toolsmenu.cpp.o.d -o CMakeFiles/amethyst.dir/ui/MenuBar/Menus/Tools/toolsmenu.cpp.o -c /root/Amethyst/src/ui/MenuBar/Menus/Tools/toolsmenu.cpp
+/root/Amethyst/src/ui/MenuBar/Menus/Tools/toolsmenu.cpp: In lambda function:
+/root/Amethyst/src/ui/MenuBar/Menus/Tools/toolsmenu.cpp:82:68: error: no matching function for call to ‘ModuleManager::create<WindowBase>(const char [65])’
+   82 |         auto* module = ModuleManager::instance().create<WindowBase>("Просмотрщик образов дисков (.img / .iso)");
+      |                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  • there is 1 candidate
+In file included from /root/Amethyst/src/ui/MenuBar/Menus/Tools/toolsmenu.h:4,
+                 from /root/Amethyst/src/ui/MenuBar/Menus/Tools/toolsmenu.cpp:1:
+    • candidate 1: ‘template<class T> T* ModuleManager::create(const QString&, const int&)’
+      /root/Amethyst/src/core/modules/ModuleManager.h:35:8:
+         35 |     T* create(const QString& group, const int& index) {
+            |        ^~~~~~
+      • candidate expects 2 arguments, 1 provided
+[119/121] Building CXX object CMakeFiles/amethyst.dir/ui/MenuBar/Menus/View/viewmenu.cpp.o
+ninja: build stopped: subcommand failed.
+[root@DESKTOP-FBIK2RN Amethyst]# почени все и ошибки и варнинги
+
+

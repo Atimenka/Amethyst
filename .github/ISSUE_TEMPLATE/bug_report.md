@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 
 ## 🖥️ Desktop:
  - OS: [e.g. Windows 10]
- - Cremniy Version: [e.g. v0.3.1]
+ - Amethyst Version: [e.g. v0.3.1]
 
 ## 💬 Additional context
 Add any other context about the problem here.

@@ -1,0 +1,16 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Amethyst
+GenericName=Low-Level Development Environment
+GenericName[ru]=Среда низкоуровневой разработки
+Comment=Integrated environment for low-level programming with hex editor, disassembler, and code editor (fork of Cremniy)
+Comment[ru]=Интегрированная среда для низкоуровневого программирования с hex-редактором, дизассемблером и редактором кода (форк Cremniy)
+Exec=amethyst %F
+Icon=/usr/share/icons/hicolor/scalable/apps/amethyst.svg
+Terminal=false
+Categories=Development;IDE;
+Keywords=hex;disassembler;reverse;engineering;amethyst;
+MimeType=application/octet-stream;application/x-executable;application/x-sharedlib;application/x-object;text/x-csrc;text/x-chdr;text/x-c++src;text/x-c++hdr;text/x-asm;text/plain;
+StartupNotify=true
+StartupWMClass=amethyst

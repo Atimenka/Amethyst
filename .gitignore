@@ -99,6 +99,7 @@ qrc_*.cpp
 *.qm
 *.res
 *.rc
+!src/resources/*.rc
 *_pch.h.cpp
 *_resource.rc
 /.qmake.cache

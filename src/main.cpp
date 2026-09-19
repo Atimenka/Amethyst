@@ -14,11 +14,15 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QCoreApplication::setOrganizationName("Munirov");
-    QCoreApplication::setApplicationName("Cremniy");
+    QCoreApplication::setOrganizationName("Atimenka");
+    QCoreApplication::setApplicationName("Amethyst");
 
 #if !defined(Q_OS_MAC)
-    a.setWindowIcon(QIcon(":/icons/icon.svg"));
+    QIcon appIcon(":/icons/icon.svg");
+    if (appIcon.isNull()) {
+        appIcon = QIcon(":/icons/amethyst.ico");
+    }
+    a.setWindowIcon(appIcon);
 #endif
 
     // - - Fonts - -

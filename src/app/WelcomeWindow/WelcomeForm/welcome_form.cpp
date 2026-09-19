@@ -22,7 +22,7 @@
 WelcomeForm::WelcomeForm(QWidget* parent)
     : QWidget(parent)
 {
-    setWindowTitle("Cremniy");
+    setWindowTitle("Amethyst");
     resize(500, 380);
 
     loadStyles();

@@ -225,7 +225,7 @@ void SettingsDialog::onExportIni()
     const QString file = QFileDialog::getSaveFileName(
         this,
         tr("Export settings"),
-        QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/cremniy-settings.ini",
+        QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/amethyst-settings.ini",
         tr("INI files (*.ini)"));
     if (file.isEmpty()) return;
 

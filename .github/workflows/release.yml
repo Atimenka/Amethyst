@@ -138,20 +138,20 @@ jobs:
       - name: Package (Linux) - AppImage
         if: runner.os == 'Linux'
         run: |
-          echo -e "[Desktop Entry]\nType=Application\nName=Cremniy\nExec=cremniy\nIcon=cremniy\nCategories=Utility;" > cremniy.desktop
+          echo -e "[Desktop Entry]\nType=Application\nName=Amethyst\nExec=amethyst\nIcon=amethyst\nCategories=Utility;" > amethyst.desktop
 
-          rsvg-convert src/resources/icons/icon.svg -w 256 -h 256 -o cremniy.png
+          rsvg-convert src/resources/icons/icon.svg -w 256 -h 256 -o amethyst.png
 
           export QML_SOURCES_PATHS=${{ github.workspace }}/src
 
           ./linuxdeploy-x86_64.AppImage --appimage-extract-and-run \
             --appdir AppDir \
-            --executable build/cremniy \
-            --desktop-file cremniy.desktop \
-            --icon-file cremniy.png \
+            --executable build/amethyst \
+            --desktop-file amethyst.desktop \
+            --icon-file amethyst.png \
             --plugin qt \
             --output appimage
-          mv Cremniy-*.AppImage cremniy-linux-${{ github.ref_name }}.AppImage || mv cremniy-*.AppImage cremniy-linux-${{ github.ref_name }}.AppImage
+          mv Amethyst-*.AppImage amethyst-linux-${{ github.ref_name }}.AppImage || mv amethyst-*.AppImage amethyst-linux-${{ github.ref_name }}.AppImage
 
       - name: Package (Windows)
         if: runner.os == 'Windows'
@@ -159,11 +159,11 @@ jobs:
         run: |
           New-Item -ItemType Directory -Path package -Force
       
-          if (!(Test-Path "build/cremniy.exe")) {
-            throw "build/cremniy.exe was not produced"
+          if (!(Test-Path "build/amethyst.exe")) {
+            throw "build/amethyst.exe was not produced"
           }
       
-          Copy-Item build/cremniy.exe package/
+          Copy-Item build/amethyst.exe package/
       
           # Copy runtime DLL's
           $vcpkgBin = "vcpkg/installed/x64-windows/bin"
@@ -182,11 +182,11 @@ jobs:
           & "$env:QT_ROOT_DIR\bin\windeployqt.exe" `
             --release `
             --no-translations `
-            package\cremniy.exe
+            package\amethyst.exe
       
           Compress-Archive `
             -Path package/* `
-            -DestinationPath cremniy-windows-${{ github.ref_name }}.zip
+            -DestinationPath amethyst-windows-${{ github.ref_name }}.zip
 
       - name: Install create-dmg
         if: runner.os == 'macOS'
@@ -196,23 +196,23 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           macdeployqt \
-            build/cremniy.app \
+            build/amethyst.app \
             -verbose=2
 
       - name: Verify macOS bundle
         if: runner.os == 'macOS'
         run: |
           echo "=== Frameworks ==="
-          find build/cremniy.app/Contents/Frameworks \
+          find build/amethyst.app/Contents/Frameworks \
             -maxdepth 2 \
             -type f \
             -print
 
           echo "=== Dependencies ==="
-          otool -L build/cremniy.app/Contents/MacOS/cremniy
+          otool -L build/amethyst.app/Contents/MacOS/amethyst
 
           echo "=== RPATH ==="
-          otool -l build/cremniy.app/Contents/MacOS/cremniy | grep -A3 LC_RPATH
+          otool -l build/amethyst.app/Contents/MacOS/amethyst | grep -A3 LC_RPATH
 
       - name: Compile Asset Catalog
         if: runner.os == 'macOS'
@@ -223,30 +223,30 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           mkdir -p package
-          cp -a build/cremniy.app package/Cremniy.app
+          cp -a build/amethyst.app package/Amethyst.app
 
-          codesign --force --deep -s - package/Cremniy.app
+          codesign --force --deep -s - package/Amethyst.app
 
           create-dmg \
-            --volname "Cremniy" \
+            --volname "Amethyst" \
             --background "src/resources/macos/background-dmg.png" \
             --window-pos 200 120 \
             --window-size 600 400 \
             --icon-size 100 \
-            --icon "Cremniy.app" 175 190 \
-            --hide-extension "Cremniy.app" \
+            --icon "Amethyst.app" 175 190 \
+            --hide-extension "Amethyst.app" \
             --app-drop-link 425 190 \
-            "cremniy-macos-${{ github.ref_name }}.dmg" \
+            "amethyst-macos-${{ github.ref_name }}.dmg" \
             "package/"
           
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: cremniy-${{ runner.os }}-${{ github.ref_name }}
+          name: amethyst-${{ runner.os }}-${{ github.ref_name }}
           path: |
-            cremniy-linux-${{ github.ref_name }}.AppImage
-            cremniy-windows-${{ github.ref_name }}.zip
-            cremniy-macos-${{ github.ref_name }}.dmg
+            amethyst-linux-${{ github.ref_name }}.AppImage
+            amethyst-windows-${{ github.ref_name }}.zip
+            amethyst-macos-${{ github.ref_name }}.dmg
           if-no-files-found: error
 
   build-rpm:
@@ -281,24 +281,24 @@ jobs:
       - name: Sync spec version with tag
         run: |
           TAG_VERSION="${GITHUB_REF_NAME#v}"
-          sed -i "s/^Version:.*/Version:        ${TAG_VERSION}/" rpm/cremniy.spec
+          sed -i "s/^Version:.*/Version:        ${TAG_VERSION}/" rpm/amethyst.spec
           echo "version=${TAG_VERSION}" >> "$GITHUB_ENV"
 
       - name: Build source tarball
         run: |
-          STAGE_DIR="$(mktemp -d)/cremniy"
+          STAGE_DIR="$(mktemp -d)/amethyst"
           mkdir -p "$STAGE_DIR"
           rsync -a --exclude='.git' ./ "$STAGE_DIR/"
           tar -C "$(dirname "$STAGE_DIR")" -czf \
-            "$HOME/rpmbuild/SOURCES/cremniy-${{ env.version }}.tar.gz" cremniy
+            "$HOME/rpmbuild/SOURCES/amethyst-${{ env.version }}.tar.gz" amethyst
 
       - name: Copy spec file
-        run: cp rpm/cremniy.spec "$HOME/rpmbuild/SPECS/"
+        run: cp rpm/amethyst.spec "$HOME/rpmbuild/SPECS/"
 
       - name: Build RPM
         run: |
             echo '%debug_package %{nil}' >> ~/.rpmmacros
-            rpmbuild -bb "$HOME/rpmbuild/SPECS/cremniy.spec"
+            rpmbuild -bb "$HOME/rpmbuild/SPECS/amethyst.spec"
 
       - name: Rename RPMs for clarity
         run: |
@@ -309,7 +309,7 @@ jobs:
       - name: Upload RPM artifact
         uses: actions/upload-artifact@v7
         with:
-          name: cremniy-rpm-${{ github.ref_name }}
+          name: amethyst-rpm-${{ github.ref_name }}
           path: dist/*.rpm
           if-no-files-found: error
 

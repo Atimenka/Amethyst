@@ -1,17 +1,16 @@
 %global qt_ver 6
 
-Name:           cremniy
+Name:           amethyst
 Version:        ${TAG_VERSION}
 Release:        10%{?dist}
 
-Summary:        IDE for low level developer
-Summary(ru):    Редактор кода для низкоуровневой разработки
+Summary:        Windows-focused IDE for low-level development (fork of Cremniy)
+Summary(ru):    Среда разработки низкоуровневого ПО (форк Cremniy)
 
 License:        GPL-3.0
-URL:            https://github.com/munirov/cremniy
+URL:            https://github.com/Atimenka/Amethyst
 
 Source0:        %{name}-%{version}.tar.gz
-
 
 BuildRequires: cmake
 BuildRequires: gcc-c++
@@ -21,26 +20,22 @@ BuildRequires: qt%{qt_ver}-qtsvg-devel
 BuildRequires: desktop-file-utils
 BuildRequires: http-parser-devel
 
-
 Requires: qt%{qt_ver}-qtbase
 Requires: qt%{qt_ver}-qttools
 Requires: qt%{qt_ver}-qtsvg
 
-
 %description
-IDE for low level developer
-
+Amethyst is a low-level development environment, combining code editor,
+HEX editor, and disassembler. It is a fork of Cremniy.
 
 %description -l ru
-Редактор кода для низкоуровневой разработки
-
+Amethyst — интегрированная среда для низкоуровневой разработки, объединяющая
+редактор кода, HEX-редактор и дизассемблер. Является форком Cremniy.
 
 %prep
 %autosetup -n %{name}
 
-
 %build
-
 rm -rf build
 
 %cmake -S src/ \
@@ -49,14 +44,13 @@ rm -rf build
 %cmake_build
 
 %install
-
 %{__rm} -rf %{buildroot}
 
 %cmake_install
 
 install -Dm644 \
-    docs/cremniy_icon_stroke.svg \
-    %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/cremniy.svg
+    docs/amethyst_icon_stroke.svg \
+    %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/amethyst.svg
 
 desktop-file-install \
     --dir=%{buildroot}%{_datadir}/applications \
@@ -76,22 +70,17 @@ install -d %{buildroot}%{_bindir}/Resources/translations
 %icons_scriptlet
 
 %files
-
 %license LICENSE
 %doc README.md
 
-%{_bindir}/cremniy
+%{_bindir}/amethyst
 
 %{_datadir}/applications/%{name}.desktop
 
-%{_datadir}/icons/hicolor/scalable/apps/cremniy.svg
+%{_datadir}/icons/hicolor/scalable/apps/amethyst.svg
 
 %{_bindir}/Resources/translations/*.qm
 
 %changelog
-
-* Tue Jul 14 2026 Dmitriy <faketriplus@yandex.ru>
-- Add translations
-
-* Mon Jul 13 2026 Dmitriy <faketriplus@yandex.ru>
-- Initial package
+* Sat Sep 19 2026 Atimenka <pelmendikii@gmail.com>
+- Initial Amethyst fork package

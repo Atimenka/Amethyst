@@ -1,53 +1,53 @@
 <div align="center">
 
-<img src="docs/cremniy_icon_stroke.svg" width="250" alt="Cremniy logo">
+<img src="docs/amethyst_icon_stroke.svg" width="330" alt="Amethyst logo">
 
-<br>
-<h3>Cremniy</h3>
-<h6>Все инструменты для низкоуровневой разработки объединены и связаны в одном приложении — пишите код, редактируйте байты и анализируйте бинарники без лишних окон</h6>
+<h2>Amethyst</h2>
+<p><b>Ориентированный на Windows форк Cremniy — среда низкоуровневой разработки, объединяющая код, байты и бинарники в одном месте.</b></p>
 
-[![License](https://img.shields.io/github/license/igmunv/cremniy?color=orange&style=flat-square)](LICENSE)
-[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=flat-square)](CONTRIBUTING.md)
-[![Community](https://img.shields.io/badge/Community-Telegram-blue?logo=telegram&style=flat-square)](https://t.me/cremniy_com)
-<br>
-[![C++17](https://img.shields.io/badge/C%2B%2B-17-blue?style=flat-square&logo=cplusplus)](https://en.cppreference.com/w/cpp/17)
-[![Qt 6](https://img.shields.io/badge/Qt-6.8.2-41CD52?style=flat-square&logo=qt)](https://www.qt.io/)
+[![Лицензия: GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue?style=flat-square)](LICENSE)
+[![Платформа: Windows](https://img.shields.io/badge/Platform-Windows-0078D6?style=flat-square&logo=windows)](https://github.com/Atimenka/Amethyst)
 
 [English](README.md) • Русский
 
 </div>
 
-<br>
+---
 
-## Что такое Cremniy?
+> ### 🧬 Amethyst — это форк Cremniy
+>
+> **Amethyst** — неофициальный форк проекта [**Cremniy**](https://github.com/munirov/cremniy), изначально созданного [munirov](https://github.com/munirov) и сообществом контрибьюторов.
+>
+> Оригинальный репозиторий: https://github.com/munirov/cremniy  
+> Лицензия оригинала: GPL-3.0.  
+> Amethyst распространяется на условиях той же лицензии.
 
-**Cremniy** — интегрированная среда для низкоуровневой разработки. Вместо того чтобы держать HEX-редактор в одном окне, дизассемблер в другом, а редактор кода в третьем — всё это объединено и связано в одном удобном приложении.
+## Что такое Amethyst?
 
-**Ориентирован на:**
+Amethyst — среда разработки низкоуровневого ПО для Windows. Она объединяет редактор кода, HEX-редактор и дизассемблер в едином приложении, избавляя от необходимости постоянно переключаться между разными окнами.
+
+**Для кого это:**
 
 - 🛠 Разработчиков системного ПО
 - 🔍 Reverse-инженеров
 - 🔐 Специалистов по информационной безопасности
 - 📡 Разработчиков embedded-систем
 
-## Почему Cremniy?
+## Чем Amethyst отличается от Cremniy?
 
-Низкоуровневая разработка сегодня — это редактор кода, HEX-редактор, дизассемблер, отладчик, открытые **в разных окнах**.
+Amethyst — это **Windows-first** форк. В то время как оригинальный Cremniy разрабатывался с упором на Linux, Amethyst фокусируется на:
 
-Вы постоянно **переключаетесь** между разными окнами, и при этом инструменты **не связаны** между собой.
-
-#### **Cremniy решает это!**
-- 🔘 Всё находится в одном месте
-- 🔗 Всё связано между собой
-- 💻 Единый workflow
-
-<img src="docs/features.gif" alt="Features" width="1280">
+- нативных сборках под Windows (MSVC + vcpkg);
+- исправлении платформенных ошибок Windows;
+- улучшенной тёмной теме и корректном масштабировании интерфейса (HiDPI);
+- инсталляторе для Windows и готовой portable-версии;
+- расширении функционала без привязки к зависимостям Linux.
 
 ## Возможности ✨
 
 ### Доступно сейчас
 
-| Функция | Описание |
+| Инструмент | Описание |
 |---|---|
 | 📝 Редактор кода | Написание и редактирование низкоуровневого кода с поддержкой синтаксиса |
 | 🔢 HEX-редактор | Просмотр и изменение бинарных данных на уровне байт (патчинг) |
@@ -55,172 +55,80 @@
 
 ### В планах
 
-- 🐛 **Отладчик** — пошаговое выполнение, просмотр регистров и памяти
-- 🧠 **Визуализация памяти** — наглядные карты расположения и выделения памяти
+- 🐛 **Отладчик (Debugger):** пошаговое выполнение, регистры, стек, память
+- 🧠 **Визуализация памяти:** наглядные карты расположения и выделения памяти
+- 🪟 **Нативная сборка Windows:** MSVC + vcpkg вместо MSYS2
+- 🎨 **Улучшенная тёмная тема** и правильное масштабирование DPI
+- 📦 **Windows-инсталлятор** и портативная сборка (ZIP)
+- 🔌 **API плагинов**
 
-## Участие в разработке 👋
+## Установка
 
-Вклад в проект **приветствуется**.
-
-Будь то исправление ошибок, новая функциональность или улучшение документации — открывайте issue или отправляйте pull request.
-
-Все задачи находятся в [**GitHub Projects**](https://github.com/orgs/munirov/projects/2/views/1).
-
-Все участники указываются в [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md) и упоминаются в видео на [YouTube-канале](https://www.youtube.com/@igmunv).
-
-Подробнее — в [CONTRIBUTING.md](CONTRIBUTING_ru.md).
-
-> [!WARNING]
-> Если вы хотите взять задачу в работу, пожалуйста, оставьте комментарий в соответствующем [Issue](https://github.com/munirov/cremniy/issues). Это необходимо, чтобы избежать дублирования работы.
->
-> Также после отправки Pull Request'а, укажите соответствующий [Issue](https://github.com/munirov/cremniy/issues) в описании к Pull Request'у с помощью строки `Closes #НОМЕР_ISSUE`
+Готовый установщик и portable-версия для Windows будут публиковаться в разделе **Releases**. Ручная сборка конечным пользователям не требуется.
 
 ## Сборка 🛠️
 
 ### Зависимости
 
-| Зависимость                                                       | Мин. версия     |
-|-------------------------------------------------------------------|-----------------|
-| **[CMake](https://cmake.org/download/)**                          | 3.16            |
-| **[Qt](https://www.qt.io/development/download-qt-installer-oss)** | 6.8.2           |
-| **[libgit2](https://libgit2.org/)**                               | 1.x             |
-| **Компилятор C++**                                                | Поддержка C++17 |
+| Зависимость | Мин. версия |
+|---|---|
+| **[CMake](https://cmake.org/download/)** | 3.16 |
+| **[Qt](https://www.qt.io/)** | 6.8.2 |
+| **[libgit2](https://libgit2.org/)** | 1.x |
+| **Компилятор C++** | Поддержка C++17 (MSVC 2022 / GCC / Clang) |
 
 <details>
-<summary><b>🪟 Windows</b></summary>
+<summary><b>🪟 Сборка под Windows (MSVC + vcpkg) — Рекомендуется</b></summary>
 
-1. Установить [MSYS2](https://www.msys2.org/)
-2. Установить MinGW, CMake, Qt6-base и libgit2 через **терминал MSYS2**:
-```base
+1. Установите Visual Studio 2022 (с компонентом «Разработка классических приложений на C++»).
+2. Установите vcpkg и зависимости:
+```powershell
+git clone https://github.com/microsoft/vcpkg.git
+.\vcpkg\bootstrap-vcpkg.bat
+.\vcpkg\vcpkg install libgit2:x64-windows
+```
+3. Сборка проекта:
+```powershell
+cmake -B build -S src -G "Ninja" `
+  -DCMAKE_BUILD_TYPE=Release `
+  -DCMAKE_TOOLCHAIN_FILE="<путь_к_vcpkg>\scripts\buildsystems\vcpkg.cmake"
+cmake --build build --config Release
+```
+4. Развёртывание библиотек Qt (windeployqt):
+```powershell
+windeployqt.exe build\amethyst.exe
+```
+</details>
+
+<details>
+<summary><b>🪟 Сборка под Windows (MinGW / MSYS2)</b></summary>
+
+```bash
 pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-libgit2
-```
-3. Добавить папку с пакетами MSYS2 в PATH  
-   По умолчанию MSYS2 пакеты находятся в `C:\msys64\ucrt64\bin`
-
-</details>
-
-<details>
-<summary><b>🐧 Linux (Debian-based / Fedora)</b></summary>
-
-Для дистрибутивов, основанных на Debian:
-```bash
-sudo apt update
-sudo apt install cmake g++ qt6-base-dev qt6-svg-dev qt6-tools-dev-tools libgit2-dev zlib1g-dev libssl-dev libpcre2-dev libhttp-parser-dev
-```
-Для Fedora:
-```bash
-sudo dnf update --refresh
-sudo dnf install cmake gcc-c++ qt6-qtbase-devel qt6-qtsvg-devel qt6-qttools-devel libgit2-devel zlib-devel openssl-devel pcre2-devel http-parser-devel
-```
-
-> ℹ️ **NOTE:** 
-> Если пакет `qt6-base-dev` недоступен в вашем дистрибутиве, используйте [официальный установщик Qt](https://www.qt.io/download-qt-installer-oss).
-
-</details>
-
-<details>
-<summary><b>🍎 macOS</b></summary>
-
-С помощью [Homebrew](https://brew.sh/):
-
-```bash
-brew install cmake qt@6 libgit2
-```
-
-</details>
-
-### Linux cборка
-
-```bash
-git clone https://github.com/igmunv/cremniy.git
-cd cremniy
 
 mkdir build && cd build
-cmake ../src
-cmake --build .
+cmake -G "MinGW Makefiles" ../src -DCMAKE_BUILD_TYPE=Release
+cmake --build . --config Release
 ```
+</details>
 
-#### Сборка в режиме Release
+<details>
+<summary><b>🐧 Linux</b></summary>
 
 ```bash
+mkdir build && cd build
 cmake ../src -DCMAKE_BUILD_TYPE=Release
-cmake --build . --config Release
-```
-
-### Windows сборка
-
-```bash
-git clone https://github.com/igmunv/cremniy.git
-cd cremniy
-
-mkdir build && cd build
-cmake -G "MinGW Makefiles" ..\src
 cmake --build .
-
 ```
+</details>
 
-#### Сборка в режиме Release
+## Участие в разработке 👋
 
-```bash
-cmake ..\src -DCMAKE_BUILD_TYPE=Release
-cmake --build . --config Release
-```
-
-## 🐧 Инструкция по установке для Linux (Fedora-подобные дистрибутивы)
-
-Данная инструкция подходит для систем, использующих пакетный менеджер **DNF / RPM**.
-
-### 🛠 Пошаговая установка:
-
-1. **Скачайте RPM-пакет** из списка файлов последней релиз сборки github (Assets).
-2. Откройте **Терминал**.
-3. Перейдите в каталог, куда был скачан файл (например, в папку «Загрузки»):
-   ```bash
-   cd ~/Downloads
-   ```
-4. Выполните команду установки:
-   ```bash
-   sudo dnf install ./cremniy-0.3.2-10.fc41.x86_64.rpm
-   ```
-   *Примечание: Пакетный менеджер `dnf` автоматически установит `cremniy` в вашу систему и подтянет все необходимые зависимости.*
-
-5. Готово! После завершения процесса вы можете запустить приложение.
-
-## 🍏 Инструкция по установке для macOS (.dmg)
-
-### 📦 Установка:
-
-1. **Скачайте файл DMG** из списка файлов последней сборки на GitHub (раздел Assets).
-2. Дважды кликните по скачанному файлу `.dmg`, чтобы смонтировать его.
-3. Перетащите иконку **Cremniy** и отпустите её прямо на ярлык папки **Программы** (Applications).
-
-![Процесс установки](screenshots/macos-install.png)
-
-4. Как только копирование завершится, вы сможете найти и запустить **Cremniy** через папку «Программы» или Launchpad.
-
-### 🛠 Решение проблем: Инструкция после установки (Снятие карантина)
-
-
-Если после установки или при первом запуске приложения вы видите ошибку:
-> *«Программа повреждена, её не удалось открыть»* или *«Apple не может проверить программу на отсутствие вредоносного ПО»*
-
-Это срабатывает встроенная система защиты macOS (Gatekeeper), которая отправляет скачанные файлы в карантин. Чтобы это исправить, выполните сброс атрибутов Apple:
-
-### 🛠 Пошаговая инструкция по снятию карантина:
-
-1. Откройте встроенное приложение **Терминал** (Terminal).
-   *(Его можно найти через поиск Spotlight нажав `Cmd + Пробел` -> ввести "Терминал")*
-2. Вставьте команду ниже **прямо в окно Терминала**.
-   ```bash
-   sudo xattr -cr /Applications/Cremniy.app
-   ```
-3. Нажмите **Enter**.
-4. Терминал попросит ввести **пароль от вашего Mac** (пароль администратора).
-   *⚠️ Обратите внимание: при вводе пароля символы и звездочки отображаться **не будут**. Это нормально для безопасности macOS. Просто введите пароль вслепую и нажмите **Enter**.*
-
-Готово! Перезапустите приложение. Теперь оно откроется без предупреждений.
-
+Pull request'ы и issues приветствуются. Если вы берете задачу в работу, пожалуйста, оставьте комментарий к соответствующему issue.
 
 ## Лицензия 📖
 
-Распространяется на условиях, описанных в [LICENSE](LICENSE).
+Amethyst распространяется под лицензией **GNU General Public License v3.0**.  
+Подробности в файле [LICENSE](LICENSE).
+
+Проект является форком [Cremniy](https://github.com/munirov/cremniy). Все оригинальные уведомления об авторских правах сохранены.

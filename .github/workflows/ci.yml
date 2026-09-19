@@ -126,12 +126,12 @@ jobs:
 
       - name: Test executable exists (Linux)
         if: runner.os == 'Linux'
-        run: test -f build/cremniy
+        run: test -f build/amethyst
 
       - name: Test executable exists (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          if (!(Test-Path "build/cremniy.exe")) {
-            throw "build/cremniy.exe was not produced"
+          if (!(Test-Path "build/amethyst.exe")) {
+            throw "build/amethyst.exe was not produced"
           }

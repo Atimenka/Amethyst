@@ -11,8 +11,8 @@
  * Modified by Ilya (https://github.com/kykyrudza) on 2026-05-12
  */
 
-#ifndef CREMNIY_PROJECTS_HISTORY_MANAGER_H
-#define CREMNIY_PROJECTS_HISTORY_MANAGER_H
+#ifndef AMETHYST_PROJECTS_HISTORY_MANAGER_H
+#define AMETHYST_PROJECTS_HISTORY_MANAGER_H
 
 #include <QDebug>
 
@@ -44,4 +44,4 @@ namespace utils {
 
 } /* namespace utils */
 
-#endif /* CREMNIY_PROJECTS_HISTORY_MANAGER_H */
+#endif /* AMETHYST_PROJECTS_HISTORY_MANAGER_H */

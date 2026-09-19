@@ -134,53 +134,52 @@ jobs:
       - name: Package (Linux) - AppImage
         if: runner.os == 'Linux'
         run: |
-          echo -e "[Desktop Entry]\nType=Application\nName=Cremniy\nExec=cremniy\nIcon=cremniy\nCategories=Utility;" > cremniy.desktop
+          echo -e "[Desktop Entry]\nType=Application\nName=Amethyst\nExec=amethyst\nIcon=amethyst\nCategories=Utility;" > amethyst.desktop
 
-          rsvg-convert src/resources/icons/icon.svg -w 256 -h 256 -o cremniy.png
+          rsvg-convert src/resources/icons/icon.svg -w 256 -h 256 -o amethyst.png
 
           export QML_SOURCES_PATHS=${{ github.workspace }}/src
 
           ./linuxdeploy-x86_64.AppImage --appimage-extract-and-run \
             --appdir AppDir \
-            --executable build/cremniy \
-            --desktop-file cremniy.desktop \
-            --icon-file cremniy.png \
+            --executable build/amethyst \
+            --desktop-file amethyst.desktop \
+            --icon-file amethyst.png \
             --plugin qt \
             --output appimage
-          mv Cremniy-*.AppImage cremniy-linux.AppImage || mv cremniy-*.AppImage cremniy-linux.AppImage
+          mv Amethyst-*.AppImage amethyst-linux.AppImage || mv amethyst-*.AppImage amethyst-linux.AppImage
 
       - name: Package (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Path package -Force
-          # Ninja кладет бинарник прямо в build
-          if (!(Test-Path "build/cremniy.exe")) {
-            throw "build/cremniy.exe was not produced"
+          if (!(Test-Path "build/amethyst.exe")) {
+            throw "build/amethyst.exe was not produced"
           }
-          Copy-Item build/cremniy.exe package/
+          Copy-Item build/amethyst.exe package/
           
           New-Item -ItemType Directory -Path "package/Resources/translations" -Force
           Copy-Item build/*.qm "package/Resources/translations/"
           
-          & "$env:QT_ROOT_DIR\bin\windeployqt.exe" --release --no-translations package\cremniy.exe
-          Compress-Archive -Path package/* -DestinationPath cremniy-windows.zip
+          & "$env:QT_ROOT_DIR\bin\windeployqt.exe" --release --no-translations package\amethyst.exe
+          Compress-Archive -Path package/* -DestinationPath amethyst-windows.zip
 
       - name: Package (macOS)
         if: runner.os == 'macOS'
         run: |
           mkdir -p package
-          cp -r build/cremniy.app package/
-          macdeployqt package/cremniy.app
+          cp -r build/amethyst.app package/
+          macdeployqt package/amethyst.app
           cd package
-          tar -czf ../cremniy-macos.tar.gz cremniy.app
+          tar -czf ../amethyst-macos.tar.gz amethyst.app
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: cremniy-${{ runner.os }}
+          name: amethyst-${{ runner.os }}
           path: |
-            cremniy-linux.AppImage
-            cremniy-windows.zip
-            cremniy-macos.tar.gz
+            amethyst-linux.AppImage
+            amethyst-windows.zip
+            amethyst-macos.tar.gz
           if-no-files-found: error

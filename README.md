@@ -6,7 +6,7 @@
 <p><b>A Windows-focused fork of Cremniy — a low-level IDE that keeps code, bytes, and binaries in one place.</b></p>
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPLv3-blue?style=flat-square)](LICENSE)
-[![Platform: Windows](https://img.shields.io/badge/Platform-Windows-0078D6?style=flat-square&logo=windows)](https://github.com/yourusername/amethyst)
+[![Platform: Windows](https://img.shields.io/badge/Platform-Windows-0078D6?style=flat-square&logo=windows)](https://github.com/Atimenka/Amethyst)
 
 </div>
 

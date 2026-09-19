@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(cremniy VERSION 0.3.1 LANGUAGES CXX)
+project(amethyst VERSION 0.3.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -9,52 +9,56 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if(MSVC)
+    add_compile_options(/utf-8)
+endif()
+
 find_package(Qt6 6.8.2 REQUIRED COMPONENTS Core Widgets Gui Concurrent LinguistTools Test Svg)
 
 # libgit2 ships a CMake package on some platforms and only a pkg-config file or
 # plain headers/libraries on others. Support all three layouts so developers do
 # not have to pass platform-specific paths to CMake.
-set(CREMNIY_LIBGIT2_TARGET "")
-set(CREMNIY_LIBGIT2_INCLUDE_DIRS "")
+set(AMETHYST_LIBGIT2_TARGET "")
+set(AMETHYST_LIBGIT2_INCLUDE_DIRS "")
 
-get_filename_component(CREMNIY_COMPILER_BIN_DIR "${CMAKE_CXX_COMPILER}" DIRECTORY)
-get_filename_component(CREMNIY_TOOLCHAIN_PREFIX "${CREMNIY_COMPILER_BIN_DIR}" DIRECTORY)
-set(CREMNIY_LIBGIT2_HINTS
+get_filename_component(AMETHYST_COMPILER_BIN_DIR "${CMAKE_CXX_COMPILER}" DIRECTORY)
+get_filename_component(AMETHYST_TOOLCHAIN_PREFIX "${AMETHYST_COMPILER_BIN_DIR}" DIRECTORY)
+set(AMETHYST_LIBGIT2_HINTS
     "$ENV{LIBGIT2_ROOT}"
     "$ENV{MINGW_PREFIX}"
-    "${CREMNIY_TOOLCHAIN_PREFIX}"
+    "${AMETHYST_TOOLCHAIN_PREFIX}"
     "$ENV{HOMEBREW_PREFIX}/opt/libgit2"
     "/opt/homebrew/opt/libgit2"
     "/usr/local/opt/libgit2"
 )
-list(FILTER CREMNIY_LIBGIT2_HINTS EXCLUDE REGEX "^$")
+list(FILTER AMETHYST_LIBGIT2_HINTS EXCLUDE REGEX "^$")
 
 find_package(PkgConfig QUIET)
 if(PkgConfig_FOUND)
     pkg_check_modules(LIBGIT2 QUIET IMPORTED_TARGET libgit2)
     if(TARGET PkgConfig::LIBGIT2)
-        set(CREMNIY_LIBGIT2_TARGET PkgConfig::LIBGIT2)
+        set(AMETHYST_LIBGIT2_TARGET PkgConfig::LIBGIT2)
     endif()
 endif()
 
-if(NOT CREMNIY_LIBGIT2_TARGET)
-    find_package(libgit2 CONFIG QUIET HINTS ${CREMNIY_LIBGIT2_HINTS})
+if(NOT AMETHYST_LIBGIT2_TARGET)
+    find_package(libgit2 CONFIG QUIET HINTS ${AMETHYST_LIBGIT2_HINTS})
     if(TARGET libgit2::libgit2package)
-        set(CREMNIY_LIBGIT2_TARGET libgit2::libgit2package)
+        set(AMETHYST_LIBGIT2_TARGET libgit2::libgit2package)
     elseif(TARGET libgit2::libgit2)
-        set(CREMNIY_LIBGIT2_TARGET libgit2::libgit2)
+        set(AMETHYST_LIBGIT2_TARGET libgit2::libgit2)
     endif()
 endif()
 
-if(NOT CREMNIY_LIBGIT2_TARGET)
+if(NOT AMETHYST_LIBGIT2_TARGET)
     find_path(LIBGIT2_INCLUDE_DIR
         NAMES git2.h
-        HINTS ${CREMNIY_LIBGIT2_HINTS}
+        HINTS ${AMETHYST_LIBGIT2_HINTS}
         PATH_SUFFIXES include
     )
     find_library(LIBGIT2_LIBRARY
         NAMES git2 libgit2
-        HINTS ${CREMNIY_LIBGIT2_HINTS}
+        HINTS ${AMETHYST_LIBGIT2_HINTS}
         PATH_SUFFIXES lib lib64
     )
     if(NOT LIBGIT2_INCLUDE_DIR OR NOT LIBGIT2_LIBRARY)
@@ -63,8 +67,8 @@ if(NOT CREMNIY_LIBGIT2_TARGET)
             "or set LIBGIT2_ROOT to its installation prefix."
         )
     endif()
-    set(CREMNIY_LIBGIT2_TARGET "${LIBGIT2_LIBRARY}")
-    set(CREMNIY_LIBGIT2_INCLUDE_DIRS "${LIBGIT2_INCLUDE_DIR}")
+    set(AMETHYST_LIBGIT2_TARGET "${LIBGIT2_LIBRARY}")
+    set(AMETHYST_LIBGIT2_INCLUDE_DIRS "${LIBGIT2_INCLUDE_DIR}")
 endif()
 
 if(NOT WIN32)
@@ -99,6 +103,8 @@ qt_add_executable(${PROJECT_NAME}
     dialogs/filecreatedialog.h
     dialogs/settingsdialog.cpp
     dialogs/settingsdialog.h
+    dialogs/aboutdialog.cpp
+    dialogs/aboutdialog.h
 
     # Widgets
     widgets/clickablelineedit.h
@@ -112,7 +118,7 @@ qt_add_executable(${PROJECT_NAME}
     widgets/search/searchpanel.h
 
     # Resources
-    resources/cremniy_res.qrc
+    resources/amethyst_res.qrc
 
     # Utils
     utils/utils.h
@@ -206,8 +212,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Modules/Windows/)
 # - - Menus - -
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ui/MenuBar/Menus/)
 
-if(CREMNIY_LIBGIT2_INCLUDE_DIRS)
-    target_include_directories(${PROJECT_NAME} PRIVATE ${CREMNIY_LIBGIT2_INCLUDE_DIRS})
+if(AMETHYST_LIBGIT2_INCLUDE_DIRS)
+    target_include_directories(${PROJECT_NAME} PRIVATE ${AMETHYST_LIBGIT2_INCLUDE_DIRS})
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -216,7 +222,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Gui
     Qt6::Concurrent
     Qt6::Svg
-    ${CREMNIY_LIBGIT2_TARGET}
+    ${AMETHYST_LIBGIT2_TARGET}
 )
 
 if(NOT WIN32)
@@ -294,6 +300,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+if(WIN32)
+    target_sources(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/resources/amethyst.rc")
+    target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/resources")
+endif()
+
 if(APPLE)
     set(ICNS_FILE "${CMAKE_CURRENT_SOURCE_DIR}/resources/macos/cremniy.icns")
     set(MACOSX_BUNDLE_ICON_FILE cremniy.icns)
@@ -305,8 +316,8 @@ if(APPLE)
     set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE TRUE
         MACOSX_BUNDLE_ICON_FILE cremniy.icns
-        MACOSX_BUNDLE_BUNDLE_NAME "Cremniy"
-        MACOSX_BUNDLE_GUI_IDENTIFIER "com.mironov.cremniy"
+        MACOSX_BUNDLE_BUNDLE_NAME "Amethyst"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "com.atimenka.amethyst"
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/macos/Info.plist.in"
     )
 

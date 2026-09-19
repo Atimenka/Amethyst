@@ -17,7 +17,7 @@ IDEWindow::IDEWindow(const QString &ProjectPath, QWidget *parent)
     setProperty("projectPath", ProjectPath);
     // - - Window Settings - -
     this->setWindowState(Qt::WindowMaximized);
-    this->setWindowTitle("Cremniy");
+    this->setWindowTitle("Amethyst");
 
     // - - Menu Bar - -
     auto const menu = menuBar();

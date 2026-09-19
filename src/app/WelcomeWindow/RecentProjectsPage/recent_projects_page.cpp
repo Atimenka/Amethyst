@@ -13,6 +13,7 @@
 #include "recent_projects_page.h"
 #include "../ProjectCard/project_card.h"
 #include "projects_history_manager.h"
+#include "dialogs/aboutdialog.h"
 
 #include <QFileDialog>
 #include <QHBoxLayout>
@@ -50,11 +51,17 @@ RecentProjectsPage::RecentProjectsPage(QWidget* parent)
     toolbarLayout->setSpacing(8);
     toolbarLayout->addStretch();
 
+    auto* aboutBtn = new QPushButton(tr("About"));
     auto* openBtn = new QPushButton(tr("Open..."));
     auto* createBtn = new QPushButton(tr("New Project"));
 
+    toolbarLayout->addWidget(aboutBtn);
     toolbarLayout->addWidget(openBtn);
     toolbarLayout->addWidget(createBtn);
+
+    connect(aboutBtn, &QPushButton::clicked, this, [this]() {
+        AboutDialog::showAbout(this);
+    });
 
     connect(openBtn, &QPushButton::clicked, this, [this]() {
         const QString dir = QFileDialog::getExistingDirectory(

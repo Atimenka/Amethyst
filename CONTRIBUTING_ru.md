@@ -106,7 +106,7 @@
 ```cpp
 /* Window setup */
 this->setWindowState(Qt::WindowMaximized);
-this->setWindowTitle("Cremniy"); /* <-- correct */
+this->setWindowTitle("Amethyst"); /* <-- correct */
 
 this->setWindowTitle("") // incorrect
 ```

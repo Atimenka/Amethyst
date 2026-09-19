@@ -61,7 +61,7 @@ Instead of single-line comments (a.k.a. `//`) we use block-comments (`/**/`)!
 ```cpp
 /* Window setup */
 this->setWindowState(Qt::WindowMaximized);
-this->setWindowTitle("Cremniy"); /* <-- correct */
+this->setWindowTitle("Amethyst"); /* <-- correct */
 
 this->setWindowTitle("") // incorrect
 ```

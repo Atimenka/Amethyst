@@ -2,8 +2,8 @@
 // Created by Dmitriy on 4/3/26.
 //
 
-#ifndef CREMNIY_LANGUAGE_MANAGER_H
-#define CREMNIY_LANGUAGE_MANAGER_H
+#ifndef AMETHYST_LANGUAGE_MANAGER_H
+#define AMETHYST_LANGUAGE_MANAGER_H
 
 #include <QTranslator>
 
@@ -31,4 +31,4 @@ public:
 
 
 
-#endif //CREMNIY_LANGUAGE_MANAGER_H
+#endif //AMETHYST_LANGUAGE_MANAGER_H

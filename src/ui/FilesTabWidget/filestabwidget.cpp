@@ -410,3 +410,61 @@ void FilesTabWidget::setTabReplaceSlot(bool checked){
 void FilesTabWidget::setTabWidthSlot(int width){
     emit setTabWidthSignal(width);
 }
+
+void FilesTabWidget::paintEvent(QPaintEvent* event) {
+    QTabWidget::paintEvent(event);
+
+    if (count() == 0) {
+        QPainter p(this);
+        p.setRenderHint(QPainter::Antialiasing);
+
+        QRect r = rect();
+        int cy = r.center().y() - 15;
+        int cx = r.center().x();
+
+        // Logo
+        QFont logoFont("Segoe UI", 16, QFont::Bold);
+        p.setFont(logoFont);
+        p.setPen(QColor("#c084fc"));
+        p.drawText(QRect(cx - 200, cy - 70, 400, 30), Qt::AlignCenter, "💎 Amethyst");
+
+        QFont subFont("Segoe UI", 10);
+        p.setFont(subFont);
+        p.setPen(QColor("#83729c"));
+        p.drawText(QRect(cx - 200, cy - 38, 400, 22), Qt::AlignCenter, tr("Среда низкоуровневой разработки и анализа"));
+
+        // Cheatsheet card
+        QRect box(cx - 190, cy - 6, 380, 150);
+        p.setPen(QColor("#33214b"));
+        p.setBrush(QColor("#161022"));
+        p.drawRoundedRect(box, 8, 8);
+
+        QFont keyFont("Segoe UI", 9, QFont::DemiBold);
+        QFont descFont("Segoe UI", 9);
+
+        static const struct {
+            const char* key;
+            const char* desc;
+        } shortcuts[] = {
+            {"Ctrl + O", "Открыть файл"},
+            {"Ctrl + Shift + I", "Просмотрщик образов (.img / .iso)"},
+            {"Ctrl + Shift + F", "Поиск по проекту"},
+            {"Ctrl + ~", "Встроенный терминал"},
+            {"F1", "О программе Amethyst"}
+        };
+
+        int sy = box.top() + 14;
+        for (const auto& item : shortcuts) {
+            p.setFont(keyFont);
+            p.setPen(QColor("#a855f7"));
+            p.drawText(QRect(box.left() + 20, sy, 130, 20), Qt::AlignLeft | Qt::AlignVCenter, item.key);
+
+            p.setFont(descFont);
+            p.setPen(QColor("#ded5ee"));
+            p.drawText(QRect(box.left() + 155, sy, 210, 20), Qt::AlignLeft | Qt::AlignVCenter, tr(item.desc));
+
+            sy += 25;
+        }
+    }
+}
+

@@ -2,6 +2,10 @@
 #include <QHeaderView>
 #include <QTreeView>
 #include <QAbstractItemView>
+#include <QLabel>
+#include <QToolButton>
+#include <QHBoxLayout>
+#include <QFileInfo>
 #include <utility>
 
 #include "filetreepanel.h"
@@ -48,6 +52,61 @@ void FileTreePanel::setupModel() {
 
 void FileTreePanel::setupUi() {
     m_layout->setContentsMargins(0, 0, 0, 0);
+    m_layout->setSpacing(0);
+
+    // Sidebar Header
+    auto* header = new QWidget(this);
+    header->setObjectName("fileTreeHeader");
+    header->setFixedHeight(30);
+    auto* headerLayout = new QHBoxLayout(header);
+    headerLayout->setContentsMargins(8, 0, 4, 0);
+    headerLayout->setSpacing(2);
+
+    QString projName = QFileInfo(m_root_path).fileName();
+    if (projName.isEmpty()) projName = tr("ПРОЕКТ");
+    auto* titleLbl = new QLabel(projName.toUpper(), header);
+    titleLbl->setObjectName("fileTreeProjectTitle");
+    headerLayout->addWidget(titleLbl);
+    headerLayout->addStretch(1);
+
+    auto* newFileBtn = new QToolButton(header);
+    newFileBtn->setText("+📄");
+    newFileBtn->setToolTip(tr("Создать файл"));
+    newFileBtn->setCursor(Qt::PointingHandCursor);
+    connect(newFileBtn, &QToolButton::clicked, this, [this] {
+        FileCreateDialog fcd(this, currentPath(), false);
+        fcd.exec();
+    });
+    headerLayout->addWidget(newFileBtn);
+
+    auto* newDirBtn = new QToolButton(header);
+    newDirBtn->setText("+📁");
+    newDirBtn->setToolTip(tr("Создать папку"));
+    newDirBtn->setCursor(Qt::PointingHandCursor);
+    connect(newDirBtn, &QToolButton::clicked, this, [this] {
+        FileCreateDialog fcd(this, currentPath(), true);
+        fcd.exec();
+    });
+    headerLayout->addWidget(newDirBtn);
+
+    auto* refreshBtn = new QToolButton(header);
+    refreshBtn->setText("🔄");
+    refreshBtn->setToolTip(tr("Обновить дерево файлов"));
+    refreshBtn->setCursor(Qt::PointingHandCursor);
+    connect(refreshBtn, &QToolButton::clicked, this, [this] {
+        m_fileModel->setRootPath(QString());
+        m_fileModel->setRootPath(m_root_path);
+    });
+    headerLayout->addWidget(refreshBtn);
+
+    auto* collapseBtn = new QToolButton(header);
+    collapseBtn->setText("⯅");
+    collapseBtn->setToolTip(tr("Свернуть всё"));
+    collapseBtn->setCursor(Qt::PointingHandCursor);
+    connect(collapseBtn, &QToolButton::clicked, m_treeView, &QTreeView::collapseAll);
+    headerLayout->addWidget(collapseBtn);
+
+    m_layout->addWidget(header);
     m_layout->addWidget(m_treeView, 1);
 
     m_treeView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

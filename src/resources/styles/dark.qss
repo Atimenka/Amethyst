@@ -600,6 +600,39 @@ QPlainTextEdit#terminalDisplay {
 }
 
 /* ==========================================
+ * File Tree Panel Header
+ * ========================================== */
+QWidget#fileTreeHeader {
+    background-color: #140f1d;
+    border-bottom: 1px solid #2a1a3c;
+}
+
+QLabel#fileTreeProjectTitle {
+    color: #c4b5fd;
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+QWidget#fileTreeHeader QToolButton {
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    color: #a797be;
+    padding: 2px 4px;
+    font-size: 11px;
+}
+
+QWidget#fileTreeHeader QToolButton:hover {
+    background-color: #2b1c44;
+    color: #ffffff;
+}
+
+QWidget#fileTreeHeader QToolButton:pressed {
+    background-color: #43226a;
+}
+
+/* ==========================================
  * Dialogs (QMessageBox, FileDialog, etc.)
  * ========================================== */
 QMessageBox {

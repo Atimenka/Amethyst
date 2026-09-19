@@ -36,44 +36,76 @@ if grep -qi microsoft /proc/version 2>/dev/null; then
     echo -e "${GREEN}[INFO] Detected Arch Linux inside WSL (Windows Subsystem for Linux)!${NC}"
 fi
 
-# 3. Locate amethyst.exe
-AMETHYST_EXE=""
-if [ -f "$BUNDLE_DIR/amethyst.exe" ]; then
-    AMETHYST_EXE="$BUNDLE_DIR/amethyst.exe"
-elif [ -f "build_win/amethyst.exe" ]; then
-    AMETHYST_EXE="build_win/amethyst.exe"
-elif [ -f "build_win/Release/amethyst.exe" ]; then
-    AMETHYST_EXE="build_win/Release/amethyst.exe"
-elif [ -f "build/amethyst.exe" ]; then
-    AMETHYST_EXE="build/amethyst.exe"
+# Ensure Qt6 manifest template exists if missing in host Arch Qt package
+if [ -d "/usr/lib/cmake/Qt6" ] && [ ! -f "/usr/lib/cmake/Qt6/windows/app.exe.manifest.in" ]; then
+    mkdir -p "/usr/lib/cmake/Qt6/windows" 2>/dev/null || true
+    cat << 'EOF' > "/usr/lib/cmake/Qt6/windows/app.exe.manifest.in" 2>/dev/null || true
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity type="win32" name="@target@" version="1.0.0.0"/>
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
+    <security>
+      <requestedPrivileges>
+        <requestedExecutionLevel level="asInvoker" uiAccess="false"/>
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/>
+    </application>
+  </compatibility>
+</assembly>
+EOF
 fi
 
-# If amethyst.exe not found, try to cross-compile with mingw-w64 on Arch
+# 3. Locate amethyst.exe
+AMETHYST_EXE=""
+for candidate in \
+    "$BUNDLE_DIR/amethyst.exe" \
+    "build_win/amethyst.exe" \
+    "build_win/Release/amethyst.exe" \
+    "build_mingw/amethyst.exe" \
+    "/mnt/c/Amethyst/build_win/Release/amethyst.exe" \
+    "/mnt/c/Amethyst/build_win/amethyst.exe" \
+    "/mnt/c/Amethyst/packaging/windows/bundle/amethyst.exe"; do
+    if [ -f "$candidate" ]; then
+        AMETHYST_EXE="$candidate"
+        break
+    fi
+done
+
+# If amethyst.exe not found, try to compile
 if [ -z "$AMETHYST_EXE" ]; then
-    echo -e "${YELLOW}[INFO] amethyst.exe not found in staging.${NC}"
-    if command -v x86_64-w64-mingw32-g++ >/dev/null 2>&1; then
-        echo -e "${CYAN}[1/4] Cross-compiling amethyst.exe with mingw-w64...${NC}"
+    echo -e "${YELLOW}[INFO] Prebuilt amethyst.exe not found in staging.${NC}"
+
+    # In WSL, try to build natively using Windows toolchain first
+    if [ "$IS_WSL" = true ] && [ -x "/mnt/c/Windows/System32/cmd.exe" ]; then
+        if /mnt/c/Windows/System32/cmd.exe /c "where cmake" >/dev/null 2>&1; then
+            echo -e "${CYAN}[1/4] Found Windows CMake via WSL! Building amethyst.exe natively...${NC}"
+            WIN_REPO_PATH="$(wslpath -w "$REPO_ROOT")"
+            /mnt/c/Windows/System32/cmd.exe /c "cd /d \"$WIN_REPO_PATH\" && cmake -B build_win -S src -DCMAKE_BUILD_TYPE=Release && cmake --build build_win --config Release --parallel" || true
+            if [ -f "build_win/Release/amethyst.exe" ]; then
+                AMETHYST_EXE="build_win/Release/amethyst.exe"
+            elif [ -f "build_win/amethyst.exe" ]; then
+                AMETHYST_EXE="build_win/amethyst.exe"
+            fi
+        fi
+    fi
+
+    # If still not found, try cross-compiling with mingw-w64 on Arch
+    if [ -z "$AMETHYST_EXE" ] && command -v x86_64-w64-mingw32-g++ >/dev/null 2>&1; then
+        echo -e "${CYAN}[1/4] Compiling amethyst.exe with mingw-w64...${NC}"
         cmake -B build_mingw -S src \
             -DCMAKE_SYSTEM_NAME=Windows \
             -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
             -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++ \
-            -DCMAKE_BUILD_TYPE=Release
-        cmake --build build_mingw --parallel "$(nproc)"
-        AMETHYST_EXE="build_mingw/amethyst.exe"
-    elif [ "$IS_WSL" = true ] && [ -f "/mnt/c/Windows/System32/cmd.exe" ]; then
-        echo -e "${YELLOW}[INFO] Mingw-w64 cross compiler not installed in Arch.${NC}"
-        echo -e "${YELLOW}You can either:${NC}"
-        echo -e "  1. Install mingw on Arch:  sudo pacman -S mingw-w64-gcc mingw-w64-cmake"
-        echo -e "  2. Or place pre-compiled amethyst.exe into packaging/windows/bundle/amethyst.exe"
-        echo -e "  3. Or build in Windows using packaging\\windows\\build_installer.bat\n"
-        
-        # Check if Windows build directory has it
-        for win_path in "/mnt/c/Amethyst/build_win/Release/amethyst.exe" "/mnt/c/Amethyst/build_win/amethyst.exe" "/mnt/c/Amethyst/build/amethyst.exe"; do
-            if [ -f "$win_path" ]; then
-                AMETHYST_EXE="$win_path"
-                break
-            fi
-        done
+            -DCMAKE_BUILD_TYPE=Release \
+            -DQT_NO_WINDOWS_APP_MANIFEST=TRUE
+        cmake --build build_mingw --parallel "$(nproc)" || true
+        if [ -f "build_mingw/amethyst.exe" ]; then
+            AMETHYST_EXE="build_mingw/amethyst.exe"
+        fi
     fi
 fi
 

@@ -1,6 +1,7 @@
 #include "toolsmenu.h"
 #include "ui/MenuBar/menufactory.h"
 #include "core/modules/ModuleManager.h"
+#include "diskimageviewerdialog.h"
 #include <QKeySequence>
 #include <QAction>
 
@@ -60,7 +61,7 @@ ToolsMenu::ToolsMenu() : BaseMenu(tr("Tools")) {
             QAction* newAction = new QAction(desc.name(), this);
             groupMenu->addAction(newAction);
 
-            connect(newAction, &QAction::triggered, this, [this, desc](){
+            connect(newAction, &QAction::triggered, this, [desc](){
                 auto* module = desc.creator();
                 module->setAttribute(Qt::WA_DeleteOnClose);
                 module->showWindow();
@@ -79,11 +80,9 @@ ToolsMenu::ToolsMenu() : BaseMenu(tr("Tools")) {
     auto* imgAction = new QAction(tr("Просмотрщик образов (.img / .iso)..."), this);
     imgAction->setShortcut(QKeySequence("Ctrl+Shift+I"));
     connect(imgAction, &QAction::triggered, this, []() {
-        auto* module = ModuleManager::instance().create<WindowBase>("Просмотрщик образов дисков (.img / .iso)");
-        if (module) {
-            module->setAttribute(Qt::WA_DeleteOnClose);
-            module->showWindow();
-        }
+        auto* module = new DiskImageViewerDialog();
+        module->setAttribute(Qt::WA_DeleteOnClose);
+        module->showWindow();
     });
     this->addAction(imgAction);
 }

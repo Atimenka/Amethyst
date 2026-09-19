@@ -33,13 +33,11 @@ bool DiskImageParser::parseImageFile(const QString& filePath, QVector<PartitionI
     // Read initial 32 MB for partition tables and superblocks inspection
     qint64 readLen = qMin<qint64>(f.size(), 32 * 1024 * 1024);
     QByteArray headerData = f.read(readLen);
-    f.close();
 
     bool ok = parseImage(headerData, outPartitions);
 
     // If whole file is available and image has partitions, try to read each partition's superblock
     if (!outPartitions.isEmpty()) {
-        f.open(QIODevice::ReadOnly);
         for (auto& part : outPartitions) {
             if (part.startByte < (quint64)f.size()) {
                 f.seek(part.startByte);
@@ -47,8 +45,8 @@ bool DiskImageParser::parseImageFile(const QString& filePath, QVector<PartitionI
                 detectAndParseFs(partHeader, 0, part.sizeBytes, part);
             }
         }
-        f.close();
     }
+    f.close();
 
     // Try system fallback tool (7z, isoinfo) to enrich file list if empty
     if (outPartitions.isEmpty() || (outPartitions.size() == 1 && outPartitions[0].rootEntries.isEmpty())) {
@@ -285,6 +283,8 @@ bool DiskImageParser::parseExt(const QByteArray& data, quint64 offset, quint64, 
     part.details["Всего Inodes"] = QString::number(inodesCount);
     part.details["Всего блоков"] = QString::number(blocksCount);
     part.details["Размер Inode"] = QString("%1 байт").arg(inodeSize);
+    part.details["Блоков в группе"] = QString::number(blocksPerGroup);
+    part.details["Inodes в группе"] = QString::number(inodesPerGroup);
 
     // Read Root directory (Inode 2)
     // Block Group Descriptor Table starts at block 1 (if blockSize > 1024) or block 2 (if blockSize == 1024)
@@ -708,7 +708,6 @@ bool DiskImageParser::parseWithSystemTools(const QString& filePath, QVector<Part
     for (const QString& line : lines) {
         if (line.length() < 53) continue;
 
-        QString datePart = line.left(19);
         QString attrPart = line.mid(20, 5);
         QString sizePart = line.mid(26, 12).trimmed();
         QString namePart = line.mid(53).trimmed();
@@ -732,7 +731,7 @@ bool DiskImageParser::parseWithSystemTools(const QString& filePath, QVector<Part
     return false;
 }
 
-QByteArray DiskImageParser::extractFileDataFromBuffer(const QByteArray& data, const PartitionInfo& part, const FsEntry& entry)
+QByteArray DiskImageParser::extractFileDataFromBuffer(const QByteArray& data, const PartitionInfo& /*part*/, const FsEntry& entry)
 {
     if (entry.dataOffset > 0 && entry.size > 0) {
         if (entry.dataOffset + entry.size <= (quint64)data.size()) {
@@ -742,7 +741,7 @@ QByteArray DiskImageParser::extractFileDataFromBuffer(const QByteArray& data, co
     return entry.inlineData;
 }
 
-QByteArray DiskImageParser::extractFileData(const QString& imageFilePath, const PartitionInfo& part, const FsEntry& entry)
+QByteArray DiskImageParser::extractFileData(const QString& imageFilePath, const PartitionInfo& /*part*/, const FsEntry& entry)
 {
     QFile f(imageFilePath);
     if (!f.open(QIODevice::ReadOnly)) return QByteArray();

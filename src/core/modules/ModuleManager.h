@@ -43,6 +43,19 @@ public:
         return vec[index].creator();
     }
 
+    template <typename T>
+    T* createByName(const QString& name) {
+        const auto& storage = getStorageConst<T>();
+        for (auto it = storage.begin(); it != storage.end(); ++it) {
+            for (const auto& desc : it.value()) {
+                if (desc.name && desc.name() == name) {
+                    return desc.creator();
+                }
+            }
+        }
+        return nullptr;
+    }
+
     template<typename T>
     const QVector<ModuleDescription<T>> & getByGroup(const QString &group) const { return getByGroup(group, getStorageConst<T>()); }
 

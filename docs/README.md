@@ -6,7 +6,7 @@ English • [Русский](README_ru.md)
 
 # Documentation
 
-🌐 **[Introduction to Cremniy](EN/overview.md)** – purpose, goals, philosophy, and project architecture
+🌐 **[Introduction to Amethyst](EN/overview.md)** – purpose, goals, philosophy, and project architecture
 
 🚀 **[Quick Start](EN/quick_start.md)** – installation, build, and first launch
 

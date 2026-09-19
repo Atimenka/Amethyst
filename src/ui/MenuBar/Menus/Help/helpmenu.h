@@ -1,7 +1,7 @@
 /*
  * This file is part of the Amethyst IDE source code.
  *
- * Copyright (c) 2026 Amethyst IDE / Cremniy IDE
+ * Copyright (c) 2026 Amethyst IDE
  * SPDX-License-Identifier: GPL-3.0 license
  *
  * Repository:

@@ -1,6 +1,6 @@
 # 🙌 Acknowledgements
 
-Huge thanks to everyone who supports and contributes to the **Cremniy** project.
+Huge thanks to everyone who supports and contributes to the **Amethyst** project.
 Your time, ideas, and effort help the project grow and move forward.
 
 > [!TIP]
@@ -12,10 +12,10 @@ Your time, ideas, and effort help the project grow and move forward.
 
 ## 👥 Contributors
 
-People who contributed their time and code to Cremniy.
+People who contributed their time and code to Amethyst.
 
-<a href="https://github.com/munirov/cremniy/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=munirov/cremniy" />
+<a href="https://github.com/Atimenka/Amethyst/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Atimenka/Amethyst" />
 </a>
 
 ---
@@ -66,7 +66,7 @@ People who contributed their time and code to Cremniy.
 
 ## 💸 Donators
 
-People who financially supported the development of Cremniy.
+People who financially supported the development of Amethyst.
 
 [alexandr-seredkin](https://github.com/alexandr-seredkin)
 

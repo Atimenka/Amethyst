@@ -1,11 +1,11 @@
 /*
- * This file is part of the Cremniy IDE source code.
+ * This file is part of the Amethyst IDE source code.
  *
- * Copyright (c) 2026 Cremniy IDE
+ * Copyright (c) 2026 Amethyst IDE
  * SPDX-License-Identifier: GPL-3.0 license
  *
  * Repository:
- * https://github.com/munirov/cremniy
+ * https://github.com/Atimenka/Amethyst
  *
  * Modified by Ilya (https://github.com/kykyrudza) on 2026-05-12
  */

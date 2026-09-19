@@ -1,6 +1,6 @@
 <div align="center">
 
-[![Community](https://img.shields.io/badge/Community-Telegram-blue?logo=telegram&style=flat-square)](https://t.me/cremniy_com)
+[![GitHub](https://img.shields.io/badge/GitHub-Atimenka%2FAmethyst-blue?logo=github&style=flat-square)](https://github.com/Atimenka/Amethyst)
 
 English • [Русский](CONTRIBUTING_ru.md)
 	
@@ -8,7 +8,7 @@ English • [Русский](CONTRIBUTING_ru.md)
 
 # Contribution
 
-Thank you for your interest in the Cremniy project.  
+Thank you for your interest in the Amethyst project.  
 Any help in improving the project is highly appreciated.
 
 ## Ways to Contribute
@@ -22,12 +22,12 @@ You can help in several ways:
 
 ## Roadmap
 
-All tasks can be found in [**GitHub Projects**](https://github.com/orgs/munirov/projects/2/views/1)
+All tasks can be found in [**GitHub Projects**](https://github.com/Atimenka/Amethyst)
 
 > [!WARNING]
-> If you would like to take on a task, please leave a comment on the corresponding [Issue](https://github.com/munirov/cremniy/issues). This helps prevent duplicate work.
+> If you would like to take on a task, please leave a comment on the corresponding [Issue](https://github.com/Atimenka/Amethyst/issues). This helps prevent duplicate work.
 >
-> Additionally, once you submit a Pull Request, reference the corresponding [Issue](https://github.com/munirov/cremniy/issues) in the PR description using `Closes #ISSUE_NUMBER`.
+> Additionally, once you submit a Pull Request, reference the corresponding [Issue](https://github.com/Atimenka/Amethyst/issues) in the PR description using `Closes #ISSUE_NUMBER`.
 
 ## Language Policy
 
@@ -51,7 +51,7 @@ All other branches (`feature/...`, `fix/...`) are created **in your fork** when 
 This is a very important part of each project, please use it primarily
 in current project scope. 
 Guidelines represented here bases mostly on Qt framework coding rules.
-That's why the most part of Cremniy bases on Qt 6.
+That's why the most part of Amethyst bases on Qt 6.
 
 Next following regions fully describes coding style rules.
 

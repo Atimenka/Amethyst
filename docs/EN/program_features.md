@@ -2,7 +2,7 @@
 
 English • [Русский](../RU/program_features.md)
 
-This document enumerates **all currently implemented features** in Cremniy and where to find them in the UI.
+This document enumerates **all currently implemented features** in Amethyst and where to find them in the UI.
 
 **Related docs:** [Overview](overview.md) · [User Guide](user_guide.md) · [Hotkeys](hotkey.md)
 

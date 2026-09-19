@@ -33,22 +33,22 @@
 
 5. **Проверьте релиз**
    
-   Перейдите на страницу [Releases](https://github.com/igmunv/cremniy/releases) и убедитесь, что релиз создан успешно.
+   Перейдите на страницу [Releases](https://github.com/Atimenka/Amethyst/releases) и убедитесь, что релиз создан успешно.
 
 ### Структура артефактов
 
 После сборки будут доступны следующие файлы:
 
-- `cremniy-linux.tar.gz` - сборка для Linux (tar.gz архив)
-- `cremniy-linux.AppImage` - сборка для Linux (AppImage, запускается на любом дистрибутиве)
-- `cremniy-windows.zip` - сборка для Windows (включает все необходимые DLL)
-- `cremniy-macos.tar.gz` - сборка для macOS
+- `amethyst-linux.tar.gz` - сборка для Linux (tar.gz архив)
+- `amethyst-linux.AppImage` - сборка для Linux (AppImage, запускается на любом дистрибутиве)
+- `amethyst-windows.zip` - сборка для Windows (включает все необходимые DLL)
+- `amethyst-macos.tar.gz` - сборка для macOS
 
 ### Ручной запуск сборки
 
 Вы также можете запустить сборку вручную без создания релиза:
 
-1. Перейдите на вкладку [Actions](https://github.com/igmunv/cremniy/actions)
+1. Перейдите на вкладку [Actions](https://github.com/Atimenka/Amethyst/actions)
 2. Выберите workflow "Build and Release"
 3. Нажмите "Run workflow"
 4. Выберите ветку и нажмите "Run workflow"
@@ -94,21 +94,21 @@ The project is configured for automatic build and release through GitHub Actions
 
 5. **Check the release**
    
-   Go to the [Releases](https://github.com/igmunv/cremniy/releases) page and verify the release was created successfully.
+   Go to the [Releases](https://github.com/Atimenka/Amethyst/releases) page and verify the release was created successfully.
 
 ### Artifact structure
 
 After building, the following files will be available:
 
-- `cremniy-linux.tar.gz` - Linux build
-- `cremniy-windows.zip` - Windows build (includes all necessary DLLs)
-- `cremniy-macos.tar.gz` - macOS build
+- `amethyst-linux.tar.gz` - Linux build
+- `amethyst-windows.zip` - Windows build (includes all necessary DLLs)
+- `amethyst-macos.tar.gz` - macOS build
 
 ### Manual workflow run
 
 You can also run the build manually without creating a release:
 
-1. Go to the [Actions](https://github.com/igmunv/cremniy/actions) tab
+1. Go to the [Actions](https://github.com/Atimenka/Amethyst/actions) tab
 2. Select the "Build and Release" workflow
 3. Click "Run workflow"
 4. Select a branch and click "Run workflow"

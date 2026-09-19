@@ -1,8 +1,8 @@
-# cremniy-codeeditor
+# amethyst-codeeditor
 
 [English](README.md) | [Русский](README_ru.md)
 
-Standalone Qt code editor module extracted from `cremniy`.
+Standalone Qt code editor module extracted from `amethyst`.
 
 ## Features
 
@@ -10,7 +10,7 @@ Standalone Qt code editor module extracted from `cremniy`.
 - `FileDataBuffer` for file and in-memory text storage
 - `LineCache`, `LineIndex`, and `UTF8Decoder`
 - bundled `QCodeEditor` syntax highlighting and resources
-- reusable as a dependency in `cremniy` or any other Qt project
+- reusable as a dependency in `amethyst` or any other Qt project
 
 ## Requirements
 
@@ -38,7 +38,7 @@ Example project structure:
 ```text
 my-project/
   external/
-    cremniy-codeeditor/
+    amethyst-codeeditor/
   src/
   CMakeLists.txt
 ```
@@ -46,8 +46,8 @@ my-project/
 Add the library in `CMakeLists.txt`:
 
 ```cmake
-add_subdirectory(external/cremniy-codeeditor)
-target_link_libraries(my_app PRIVATE cremniy-codeeditor)
+add_subdirectory(external/amethyst-codeeditor)
+target_link_libraries(my_app PRIVATE amethyst-codeeditor)
 ```
 
 Use the public headers in your code:
@@ -87,4 +87,4 @@ Do not keep duplicate local copies of these sources in your app:
 - `LineIndex`
 - `UTF8Decoder`
 
-Use `cremniy-codeeditor` as the single source of truth.
+Use `amethyst-codeeditor` as the single source of truth.

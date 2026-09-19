@@ -1,8 +1,8 @@
-# cremniy-codeeditor
+# amethyst-codeeditor
 
 [English](README.md) | [Русский](README_ru.md)
 
-Автономный Qt-модуль редактора кода, вынесенный из `cremniy`.
+Автономный Qt-модуль редактора кода, вынесенный из `amethyst`.
 
 ## Возможности
 
@@ -10,7 +10,7 @@
 - `FileDataBuffer` для работы с файлами и текстом в памяти
 - `LineCache`, `LineIndex` и `UTF8Decoder`
 - встроенные подсветка синтаксиса и ресурсы `QCodeEditor`
-- можно использовать как зависимость в `cremniy` или в любом другом Qt-проекте
+- можно использовать как зависимость в `amethyst` или в любом другом Qt-проекте
 
 ## Требования
 
@@ -38,7 +38,7 @@ cmake --build build
 ```text
 my-project/
   external/
-    cremniy-codeeditor/
+    amethyst-codeeditor/
   src/
   CMakeLists.txt
 ```
@@ -46,8 +46,8 @@ my-project/
 Подключение в `CMakeLists.txt`:
 
 ```cmake
-add_subdirectory(external/cremniy-codeeditor)
-target_link_libraries(my_app PRIVATE cremniy-codeeditor)
+add_subdirectory(external/amethyst-codeeditor)
+target_link_libraries(my_app PRIVATE amethyst-codeeditor)
 ```
 
 Использование публичных заголовков:
@@ -87,4 +87,4 @@ setCentralWidget(editor);
 - `LineIndex`
 - `UTF8Decoder`
 
-Используйте `cremniy-codeeditor` как единственный source of truth.
+Используйте `amethyst-codeeditor` как единственный source of truth.

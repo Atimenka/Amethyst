@@ -1,7 +1,7 @@
 /*
  * This file is part of the Amethyst IDE source code.
  *
- * Copyright (c) 2026 Amethyst IDE / Cremniy IDE
+ * Copyright (c) 2026 Amethyst IDE
  * SPDX-License-Identifier: GPL-3.0 license
  *
  * Repository:
@@ -149,7 +149,7 @@ RecentProjectsPage::RecentProjectsPage(QWidget* parent)
     emptyText->setAlignment(Qt::AlignCenter);
 
     auto* emptyDevText = new QLabel(
-        tr("Разработчик форка: Atimenka • Основано на Cremniy"),
+        tr("Разработчик: Atimenka • Amethyst IDE"),
         m_emptyStateWidget);
     emptyDevText->setObjectName("EmptyStateDevText");
     emptyDevText->setAlignment(Qt::AlignCenter);

@@ -4,8 +4,8 @@ Name:           amethyst
 Version:        ${TAG_VERSION}
 Release:        10%{?dist}
 
-Summary:        Windows-focused IDE for low-level development (fork of Cremniy)
-Summary(ru):    Среда разработки низкоуровневого ПО (форк Cremniy)
+Summary:        Amethyst — Windows-focused IDE for low-level development
+Summary(ru):    Amethyst — среда разработки низкоуровневого ПО
 
 License:        GPL-3.0
 URL:            https://github.com/Atimenka/Amethyst
@@ -26,11 +26,11 @@ Requires: qt%{qt_ver}-qtsvg
 
 %description
 Amethyst is a low-level development environment, combining code editor,
-HEX editor, and disassembler. It is a fork of Cremniy.
+HEX editor, and disassembler.
 
 %description -l ru
 Amethyst — интегрированная среда для низкоуровневой разработки, объединяющая
-редактор кода, HEX-редактор и дизассемблер. Является форком Cremniy.
+редактор кода, HEX-редактор и дизассемблер.
 
 %prep
 %autosetup -n %{name}

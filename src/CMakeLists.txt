@@ -311,8 +311,8 @@ if(WIN32)
 endif()
 
 if(APPLE)
-    set(ICNS_FILE "${CMAKE_CURRENT_SOURCE_DIR}/resources/macos/cremniy.icns")
-    set(MACOSX_BUNDLE_ICON_FILE cremniy.icns)
+    set(ICNS_FILE "${CMAKE_CURRENT_SOURCE_DIR}/resources/macos/amethyst.icns")
+    set(MACOSX_BUNDLE_ICON_FILE amethyst.icns)
     set_source_files_properties(${ICNS_FILE} PROPERTIES
         MACOSX_PACKAGE_LOCATION "Resources"
     )
@@ -320,7 +320,7 @@ if(APPLE)
 
     set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE TRUE
-        MACOSX_BUNDLE_ICON_FILE cremniy.icns
+        MACOSX_BUNDLE_ICON_FILE amethyst.icns
         MACOSX_BUNDLE_BUNDLE_NAME "Amethyst"
         MACOSX_BUNDLE_GUI_IDENTIFIER "com.atimenka.amethyst"
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/macos/Info.plist.in"

@@ -11,9 +11,9 @@ Create a **unified tool for system programming** that eliminates the need for sc
 
 ## ✨ Tasks
 
-All tasks can be found in [**GitHub Projects**](https://github.com/orgs/munirov/projects/2/views/1)
+All tasks can be found in [**GitHub Projects**](https://github.com/Atimenka/Amethyst)
 
 > [!WARNING]
-> If you would like to take on a task, please leave a comment on the corresponding [Issue](https://github.com/munirov/cremniy/issues). This helps prevent duplicate work.
+> If you would like to take on a task, please leave a comment on the corresponding [Issue](https://github.com/Atimenka/Amethyst/issues). This helps prevent duplicate work.
 >
-> Additionally, once you submit a Pull Request, reference the corresponding [Issue](https://github.com/munirov/cremniy/issues) in the PR description using `Closes #ISSUE_NUMBER`.
+> Additionally, once you submit a Pull Request, reference the corresponding [Issue](https://github.com/Atimenka/Amethyst/issues) in the PR description using `Closes #ISSUE_NUMBER`.

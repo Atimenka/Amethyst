@@ -1,5 +1,5 @@
 mkdir AppIcon.iconset
-SRC=cremniy-icon-iOS-ClearDark-1024@1x.png
+SRC=amethyst-icon-iOS-ClearDark-1024@1x.png
 
 sips -z 16 16   "$SRC" --out AppIcon.iconset/icon_16x16.png
 sips -z 32 32   "$SRC" --out AppIcon.iconset/icon_16x16@2x.png
@@ -12,4 +12,4 @@ sips -z 512 512 "$SRC" --out AppIcon.iconset/icon_256x256@2x.png
 sips -z 512 512 "$SRC" --out AppIcon.iconset/icon_512x512.png
 cp "$SRC" AppIcon.iconset/icon_512x512@2x.png
 
-iconutil -c icns AppIcon.iconset -o cremniy.icns
+iconutil -c icns AppIcon.iconset -o amethyst.icns

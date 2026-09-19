@@ -10,7 +10,9 @@
 #include "dialogs/settingsdialog.h"
 #include "ui/MenuBar/menubarbuilder.h"
 #include "widgets/search/searchpanel.h"
+#include "diskimageviewerdialog.h"
 #include <QShortcut>
+#include <QPushButton>
 
 IDEWindow::IDEWindow(const QString &ProjectPath, QWidget *parent)
     : QMainWindow(parent), m_projectPath(ProjectPath) {
@@ -27,9 +29,39 @@ IDEWindow::IDEWindow(const QString &ProjectPath, QWidget *parent)
     // - - Widgets - -
     m_statusBar = statusBar();
     m_statusBar->setObjectName("ideStatusBar");
+
+    auto* termBtn = new QPushButton(tr("🖥 Терминал"), this);
+    termBtn->setObjectName("statusTermBtn");
+    termBtn->setCursor(Qt::PointingHandCursor);
+    termBtn->setCheckable(true);
+    connect(termBtn, &QPushButton::toggled, this, &IDEWindow::on_Toggle_Terminal);
+    m_statusBar->addWidget(termBtn);
+
+    auto* diskViewerBtn = new QPushButton(tr("💽 Образ диска"), this);
+    diskViewerBtn->setObjectName("statusDiskBtn");
+    diskViewerBtn->setCursor(Qt::PointingHandCursor);
+    connect(diskViewerBtn, &QPushButton::clicked, this, [] {
+        auto* dlg = new DiskImageViewerDialog();
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
+        dlg->showWindow();
+    });
+    m_statusBar->addWidget(diskViewerBtn);
+
     m_statusLabel = new QLabel(this);
     m_statusLabel->setObjectName("ideStatusLabel");
     m_statusBar->addPermanentWidget(m_statusLabel);
+
+    auto* encodingLabel = new QLabel("UTF-8", this);
+    encodingLabel->setObjectName("statusMetaLabel");
+    m_statusBar->addPermanentWidget(encodingLabel);
+
+#ifdef Q_OS_WIN
+    auto* eolLabel = new QLabel("CRLF", this);
+#else
+    auto* eolLabel = new QLabel("LF", this);
+#endif
+    eolLabel->setObjectName("statusMetaLabel");
+    m_statusBar->addPermanentWidget(eolLabel);
 
     m_mainWidget = new QWidget(this);
     m_mainLayout = new QHBoxLayout(m_mainWidget);

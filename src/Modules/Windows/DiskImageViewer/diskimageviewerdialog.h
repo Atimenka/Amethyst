@@ -22,6 +22,9 @@
 #include <QTableWidget>
 #include <QVector>
 
+class QDragEnterEvent;
+class QDropEvent;
+
 class DiskImageViewerDialog final : public WindowBase
 {
     Q_OBJECT
@@ -31,6 +34,8 @@ public:
 
 protected:
     void showEvent(QShowEvent* event) override;
+    void dragEnterEvent(QDragEnterEvent* event) override;
+    void dropEvent(QDropEvent* event) override;
 
 private slots:
     void onSelectFileClicked();

@@ -6,6 +6,10 @@
 #include <QToolButton>
 #include <QHBoxLayout>
 #include <QFileInfo>
+#include <QClipboard>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QApplication>
 #include <utility>
 
 #include "filetreepanel.h"
@@ -236,6 +240,20 @@ void FileTreePanel::showMenu(const QPoint& point) {
         menu.addAction(m_rename);
         menu.addAction(m_delete);
     }
+
+    menu.addSeparator();
+    auto* copyPathAction = menu.addAction(tr("Копировать путь"));
+    connect(copyPathAction, &QAction::triggered, this, [this] {
+        QApplication::clipboard()->setText(currentPath());
+    });
+
+    auto* openExplorerAction = menu.addAction(tr("Показать в Проводнике / Файловом менеджере"));
+    connect(openExplorerAction, &QAction::triggered, this, [this] {
+        QString p = currentPath();
+        QFileInfo fi(p);
+        QString dir = fi.isDir() ? p : fi.dir().absolutePath();
+        QDesktopServices::openUrl(QUrl::fromLocalFile(dir));
+    });
 
     if (!menu.isEmpty())
         menu.exec(m_treeView->viewport()->mapToGlobal(point));

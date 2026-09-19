@@ -12,12 +12,15 @@
 #include "core/modules/ModuleManager.h"
 
 #include <QCoreApplication>
+#include <QDragEnterEvent>
+#include <QDropEvent>
 #include <QEasingCurve>
 #include <QFileDialog>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QPropertyAnimation>
 #include <QSplitter>
 #include <QVBoxLayout>
@@ -160,6 +163,25 @@ DiskImageViewerDialog::DiskImageViewerDialog(QWidget* parent)
     splitter->setStretchFactor(1, 2);
 
     root->addWidget(splitter, 1);
+    setAcceptDrops(true);
+}
+
+void DiskImageViewerDialog::dragEnterEvent(QDragEnterEvent* event)
+{
+    if (event->mimeData()->hasUrls()) {
+        event->acceptProposedAction();
+    }
+}
+
+void DiskImageViewerDialog::dropEvent(QDropEvent* event)
+{
+    const QList<QUrl> urls = event->mimeData()->urls();
+    if (!urls.isEmpty()) {
+        QString localFile = urls.first().toLocalFile();
+        if (!localFile.isEmpty()) {
+            loadFile(localFile);
+        }
+    }
 }
 
 void DiskImageViewerDialog::showEvent(QShowEvent* event)

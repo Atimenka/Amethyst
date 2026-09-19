@@ -479,6 +479,36 @@ QLabel#ideStatusLabel {
     margin-right: 6px;
 }
 
+QPushButton#statusTermBtn,
+QPushButton#statusDiskBtn {
+    background-color: transparent;
+    color: #c4b5fd;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+QPushButton#statusTermBtn:hover,
+QPushButton#statusDiskBtn:hover {
+    background-color: #2b1a44;
+    color: #ffffff;
+}
+
+QPushButton#statusTermBtn:checked {
+    background-color: #4a247c;
+    color: #ffffff;
+}
+
+QLabel#statusMetaLabel {
+    color: #9d8ab5;
+    font-size: 11px;
+    padding: 2px 8px;
+    margin-right: 4px;
+    border-left: 1px solid #281a3a;
+}
+
 /* ==========================================
  * Splitters
  * ========================================== */
